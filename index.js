@@ -14,8 +14,8 @@ function showSlide(index) {
     if (index < 10)
         document.body.style.background = "#ffeef2";
     else {
-        document.body.style.background = "url('/res/beach.jpg')";
-        document.body.style.background = "url('/res/beach.jpg') no-repeat center center fixed";
+        document.body.style.background = "url('./res/beach.jpg')";
+        document.body.style.background = "url('./res/beach.jpg') no-repeat center center fixed";
         document.body.style.backgroundSize = "cover";
     }
 
