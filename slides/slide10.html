@@ -1,0 +1,33 @@
+<style>
+    .ans {
+        border: none;
+    }
+    
+    .ans-wrapper {
+        width: 60%;
+        height: 30%;
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: 50% 50%;
+        grid-gap: 30px;
+    }
+</style>
+
+<canvas id="eggmonCanvas10"></canvas>
+<div class="dialogue" id="questionText">
+</div>
+<div class="ans-wrapper">
+    <button class="ans dialogue"></button>
+    <button class="ans dialogue"></button>
+    <button class="ans dialogue"></button>
+    <button class="ans dialogue"></button>
+</div>
+
+<!-- Popup Container -->
+<div id="popup" class="popup hidden">
+    <div class="popup-content">
+        <p id="popup-text">Lời khen ở đây</p>
+        <button id="popup-close">OK</button>
+    </div>
+</div>
