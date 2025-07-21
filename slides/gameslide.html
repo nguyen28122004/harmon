@@ -344,37 +344,31 @@
 
             let offsetX, offsetY;
             let dragging = false;
+            let lastTouchX = 0,
+                lastTouchY = 0;
 
-            const onMouseDown = (e) => {
-                dragging = true;
+            const startDrag = (clientX, clientY) => {
                 const rect = canvas.getBoundingClientRect();
-                offsetX = e.clientX - rect.left;
-                offsetY = e.clientY - rect.top;
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
+                offsetX = clientX - rect.left;
+                offsetY = clientY - rect.top;
             };
 
-            const onMouseMove = (e) => {
-                if (!dragging) return;
+            const updatePosition = (clientX, clientY) => {
                 const gameRect = gameCanvas.getBoundingClientRect();
-                let newX = e.clientX - gameRect.left - offsetX;
-                let newY = e.clientY - gameRect.top - offsetY;
+                let newX = clientX - gameRect.left - offsetX;
+                let newY = clientY - gameRect.top - offsetY;
                 canvas.style.left = newX + 'px';
                 canvas.style.top = newY + 'px';
             };
 
-            const onMouseUp = (e) => {
-                if (!dragging) return;
-                dragging = false;
-                document.removeEventListener('mousemove', onMouseMove);
-                document.removeEventListener('mouseup', onMouseUp);
-
+            const endDrag = (clientX, clientY) => {
                 const sidebarRect = sidebar.getBoundingClientRect();
                 const gameRect = gameCanvas.getBoundingClientRect();
-                const dropX = e.clientX - gameRect.left - offsetX;
-                const dropY = e.clientY - gameRect.top - offsetY;
+                const dropX = clientX - gameRect.left - offsetX;
+                const dropY = clientY - gameRect.top - offsetY;
 
-                if (e.clientX >= sidebarRect.left && e.clientX <= sidebarRect.right && e.clientY >= sidebarRect.top && e.clientY <= sidebarRect.bottom) {
+                if (clientX >= sidebarRect.left && clientX <= sidebarRect.right &&
+                    clientY >= sidebarRect.top && clientY <= sidebarRect.bottom) {
                     if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
                     if (!document.getElementById('sidebar-' + key)) {
                         const newItem = createCanvasItem(key, meta);
@@ -408,7 +402,6 @@
                     canvas.style.left = finalX + 'px';
                     canvas.style.top = finalY + 'px';
                     canvas.style.zIndex = meta.layer || 1;
-
                     canvas.dataset.position = JSON.stringify({
                         x: finalX,
                         y: finalY
@@ -419,11 +412,58 @@
                 }
             };
 
+            const onMouseDown = (e) => {
+                dragging = true;
+                startDrag(e.clientX, e.clientY);
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+            };
+            const onMouseMove = (e) => {
+                if (!dragging) return;
+                updatePosition(e.clientX, e.clientY);
+            };
+            const onMouseUp = (e) => {
+                if (!dragging) return;
+                dragging = false;
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+                endDrag(e.clientX, e.clientY);
+            };
+
+            const onTouchStart = (e) => {
+                if (e.touches.length !== 1) return;
+                dragging = true;
+                const touch = e.touches[0];
+                startDrag(touch.clientX, touch.clientY);
+                document.addEventListener('touchmove', onTouchMove, {
+                    passive: false
+                });
+                document.addEventListener('touchend', onTouchEnd);
+            };
+            const onTouchMove = (e) => {
+                if (!dragging || e.touches.length !== 1) return;
+                e.preventDefault();
+                const touch = e.touches[0];
+                lastTouchX = touch.clientX;
+                lastTouchY = touch.clientY;
+                updatePosition(touch.clientX, touch.clientY);
+            };
+            const onTouchEnd = () => {
+                if (!dragging) return;
+                dragging = false;
+                document.removeEventListener('touchmove', onTouchMove);
+                document.removeEventListener('touchend', onTouchEnd);
+                endDrag(lastTouchX, lastTouchY);
+            };
+
             if (isClone) {
                 canvas.style.left = initialPosition.x + 'px';
                 canvas.style.top = initialPosition.y + 'px';
                 canvas.style.zIndex = meta.layer || 1;
                 canvas.addEventListener('mousedown', onMouseDown);
+                canvas.addEventListener('touchstart', onTouchStart, {
+                    passive: false
+                });
                 canvas.addEventListener('dblclick', () => {
                     if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
                     if (!document.getElementById('sidebar-' + key)) {
@@ -438,14 +478,12 @@
                 canvas.addEventListener('mousedown', (e) => {
                     e.preventDefault();
                     if (activeItems.has(key)) return;
-
                     const sidebarRect = canvas.getBoundingClientRect();
                     const gameRect = gameCanvas.getBoundingClientRect();
                     const offsetX = e.clientX - sidebarRect.left;
                     const offsetY = e.clientY - sidebarRect.top;
                     const posX = e.clientX - gameRect.left - offsetX;
                     const posY = e.clientY - gameRect.top - offsetY;
-
                     const clone = createCanvasItem(key, meta, true, {
                         x: offsetX,
                         y: offsetY
@@ -456,12 +494,39 @@
                     gameCanvas.appendChild(clone);
                     activeItems.add(key);
                     canvas.remove();
-
                     const event = new MouseEvent('mousedown', {
                         clientX: e.clientX,
                         clientY: e.clientY
                     });
                     clone.dispatchEvent(event);
+                });
+                canvas.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    if (activeItems.has(key)) return;
+                    const touch = e.touches[0];
+                    const sidebarRect = canvas.getBoundingClientRect();
+                    const gameRect = gameCanvas.getBoundingClientRect();
+                    const offsetX = touch.clientX - sidebarRect.left;
+                    const offsetY = touch.clientY - sidebarRect.top;
+                    const posX = touch.clientX - gameRect.left - offsetX;
+                    const posY = touch.clientY - gameRect.top - offsetY;
+                    const clone = createCanvasItem(key, meta, true, {
+                        x: offsetX,
+                        y: offsetY
+                    }, {
+                        x: posX,
+                        y: posY
+                    });
+                    gameCanvas.appendChild(clone);
+                    activeItems.add(key);
+                    canvas.remove();
+                    clone.dispatchEvent(new TouchEvent('touchstart', {
+                        touches: [touch],
+                        cancelable: true,
+                        bubbles: true
+                    }));
+                }, {
+                    passive: false
                 });
             }
 
