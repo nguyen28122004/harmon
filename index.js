@@ -9,17 +9,73 @@ function updateNavButtons() {
     prevBtn.style.display = currentSlide === 0 ? "none" : "block";
     nextBtn.style.display = currentSlide === slides.length - 1 || currentSlide === 12 ? "none" : "block";
 }
+let currentBgUrl = ""; // Lưu ảnh hiện tại (rỗng nếu đang dùng màu nền)
+
+function smoothBackgroundChange(newImageUrl = "") {
+    const overlay = document.getElementById("bgOverlay");
+
+    if (newImageUrl === currentBgUrl) return;
+
+    // Hiện overlay để fade-out ảnh cũ
+    overlay.style.backgroundImage = currentBgUrl ? `url(${currentBgUrl})` : "";
+    overlay.style.zIndex = 0;
+    overlay.style.opacity = 1;
+
+    setTimeout(() => {
+        if (newImageUrl) {
+            document.body.style.backgroundImage = `url(${newImageUrl})`;
+            document.body.style.backgroundRepeat = "no-repeat";
+            document.body.style.backgroundPosition = "center center";
+            document.body.style.backgroundAttachment = "fixed";
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundColor = ""; // xóa màu nếu có
+
+            overlay.style.backgroundImage = `url(${newImageUrl})`;
+        } else {
+            // Xóa ảnh, thay bằng màu
+            document.body.style.backgroundImage = "";
+            document.body.style.backgroundRepeat = "";
+            document.body.style.backgroundPosition = "";
+            document.body.style.backgroundAttachment = "";
+            document.body.style.backgroundSize = "";
+            document.body.style.backgroundColor = "#ffeef2";
+
+            overlay.style.backgroundImage = "";
+        }
+
+        overlay.style.opacity = 0;
+        currentBgUrl = newImageUrl;
+    }, 400);
+}
+
 
 function showSlide(index) {
     if (index < 10)
-        document.body.style.background = "#ffeef2";
-    else {
-        document.body.style.background = "url('./res/beach.jpg')";
-        document.body.style.background = "url('./res/beach.jpg') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
+        smoothBackgroundChange("")
+    else if (index > 10) {
+        smoothBackgroundChange('./res/beach.jpg');
+
+    } else if (index === 10) {
+        smoothBackgroundChange('./res/beach.jpg');
     }
 
-    if (isAnimating || index === currentSlide || index < 0 || index >= slides.length) return;
+    if (isAnimating || index < 0 || index >= slides.length) return;
+
+    if (index === currentSlide && !slides[index].classList.contains("active")) {
+        // Nếu chưa active slide hiện tại thì active nó + apply hiệu ứng vào
+        slides[index].classList.add("fade-in");
+        slides[index].classList.add("active");
+        setTimeout(() => {
+            slides[index].classList.remove("fade-in");
+            updateNavButtons();
+            isAnimating = false;
+        }, 400);
+        return;
+    }
+
+    if (index === currentSlide) return;
+
+
     isAnimating = true;
 
     const current = slides[currentSlide];
@@ -105,6 +161,30 @@ function setupSpriteAnimation(options) {
 
 // Load slides and animations
 Promise.all([
+
+    fetch('slides/lockslide.html').then(res => res.text()).then(data => {
+        document.getElementById('lockScreen').innerHTML = data;
+        setupSpriteAnimation({
+            canvasId: 'mining0',
+            imageSrc: 'res/mining.png',
+            frameWidth: 622,
+            frameHeight: 320,
+            columns: 4,
+            rows: 1,
+            targetRow: 0,
+            frameRate: 160
+        });
+
+        // Tải js sau khi nội dung slide đã load
+        const script = document.createElement('script');
+        script.src = 'lockScreen.js';
+        script.onload = () => {
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        };
+        document.body.appendChild(script);
+    }),
+
     fetch('slides/slide1.html').then(res => res.text()).then(data => {
         document.getElementById('slide1').innerHTML = data;
         setupSpriteAnimation({
@@ -385,11 +465,31 @@ Promise.all([
 
 ]).then(() => {
     // Sau khi load xong tất cả slide, active slide đầu tiên
-    const savedSlide = parseInt(localStorage.getItem("lastSlide")) || 0;
-    currentSlide = savedSlide;
-    showSlide(currentSlide); // Gọi để áp dụng background tương ứng
-    slides[currentSlide].classList.add("active");
-    updateNavButtons();
+    const lockScreen = document.getElementById("lockScreen");
+    if (!lockScreen || lockScreen.style.display === "none") {
+        const savedSlide = parseInt(localStorage.getItem("lastSlide")) || 0;
+        currentSlide = savedSlide;
 
+        // Gọi showSlide ở đây nếu đã unlock từ trước
+        showSlide(currentSlide);
+    }
 
 });
+
+function unlockDoor() {
+    const lockScreen = document.getElementById("lockScreen");
+
+    // Bắt đầu animation mở cửa
+    lockScreen.classList.add("closing");
+
+    setTimeout(() => {
+        lockScreen.style.display = "none";
+
+        // Lấy slide đã lưu
+        const savedSlide = parseInt(localStorage.getItem("lastSlide")) || 0;
+        currentSlide = savedSlide;
+
+        // Gọi showSlide để xử lý hiệu ứng mượt mà
+        showSlide(currentSlide);
+    }, 1800);
+}

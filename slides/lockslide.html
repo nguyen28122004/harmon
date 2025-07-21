@@ -1,0 +1,146 @@
+<style>
+    #lockScreen {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: linear-gradient(135deg, #ffeef2, #ffe6fa);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    
+    .lock-content {
+        text-align: center;
+        padding: 30px;
+        background: rgba(255, 240, 245, 0.92);
+        border-radius: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+        max-width: 90%;
+        z-index: 2;
+        position: relative;
+        transition: all 1.6s ease;
+        backdrop-filter: blur(10px);
+    }
+    
+    .emoji {
+        font-size: 3rem;
+        margin-bottom: 10px;
+    }
+    
+    .lock-msg {
+        margin-top: 2rem;
+        font-size: 2.5rem;
+        color: #110034;
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-family: 'Bahianita', cursive;
+        letter-spacing: 4px;
+    }
+    
+    #timer {
+        font-size: 4rem;
+        font-weight: bold;
+        color: #9370DB;
+        margin-bottom: 25px;
+        font-family: 'DalekPinpoint', sans-serif;
+    }
+    
+    #enterBtn {
+        font-family: 'Bahianita', cursive;
+        display: none;
+        padding: 12px 24px;
+        font-size: 1.1rem;
+        background-color: #6e0238;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        transition: background-color 0.3s, transform 0.3s;
+        letter-spacing: 4px;
+    }
+    
+    #enterBtn:hover {
+        font-family: 'Bahianita', cursive;
+        background-color: #5b1433;
+        transform: scale(1.05);
+    }
+    
+    .door-left,
+    .door-right {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 50%;
+        background-color: rgba(255, 230, 250, 0.85);
+        z-index: 1;
+        box-shadow: 0 0 25px rgba(255, 192, 203, 0.5);
+        backdrop-filter: blur(10px);
+        transition: transform 2.2s ease;
+    }
+    
+    .door-left {
+        left: 0;
+        border-right: 1px solid #f3cce8;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        box-shadow: inset -2px 0 4px rgba(255, 182, 193, 0.4), 0 0 15px rgba(255, 182, 193, 0.3);
+    }
+    
+    .door-right {
+        right: 0;
+        border-left: 1px solid #f3cce8;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        box-shadow: inset 2px 0 4px rgba(255, 182, 193, 0.4), 0 0 15px rgba(255, 182, 193, 0.3);
+    }
+    
+    .door-left::after,
+    .door-right::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-radius: inherit;
+        box-shadow: 0 0 40px rgba(255, 200, 220, 0.5);
+        pointer-events: none;
+    }
+    
+    #lockScreen.closing .door-left {
+        transform: translateX(-100%);
+    }
+    
+    #lockScreen.closing .door-right {
+        transform: translateX(100%);
+    }
+    
+    #lockScreen.closing .lock-content {
+        transform: scale(0.7);
+        opacity: 0;
+        filter: blur(8px);
+    }
+    
+    #mining0 {
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+        height: 101px;
+    }
+</style>
+
+
+
+<div class="door-left"></div>
+<div class="door-right"></div>
+<div class="lock-content">
+    <div class="emote">
+        <canvas id="mining0"></canvas>
+    </div>
+    <div class="lock-msg">Đang sửa chữa, quay lại vào <br>00:00<br>24/07/2025</div>
+    <div id="timer">00:00:00</div>
+    <button id="enterBtn" onclick="unlockDoor()">Mở cửa</button>
+</div>

@@ -35,12 +35,11 @@ body {
 }
 
 .slide.fade-out {
-    opacity: 0;
-    transform: scale(0.9);
+    animation: fadeOutScaleBlur 0.4s ease forwards;
 }
 
 .slide.fade-in {
-    animation: fadeInScale 0.4s ease forwards;
+    animation: fadeInScaleBlur 0.4s ease forwards;
 }
 
 @keyframes fadeInScale {
@@ -51,6 +50,32 @@ body {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@keyframes fadeInScaleBlur {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeOutScaleBlur {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(8px);
     }
 }
 
@@ -185,4 +210,43 @@ canvas {
     src: url('./fonts/SVN-Brunette.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'DalekPinpoint';
+    src: url('fonts/DalekPinpointBold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Bahianita';
+    src: url('fonts/Bahianita-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+#lockScreen.closing .door-left,
+#lockScreen.closing .door-right {
+    transition: transform 1.6s ease;
+}
+
+#bgOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1.2s ease, backdrop-filter 1.2s ease;
+    /* CHẬM HƠN */
+    backdrop-filter: blur(12px);
+}
+
+body {
+    transition: background-color 1.2s ease, background-image 1.2s ease;
 }
