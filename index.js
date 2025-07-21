@@ -477,10 +477,32 @@ Promise.all([
 });
 
 function unlockDoor() {
+
+
+    // Reset inputs & icons
+    const popup = document.getElementById("passwordPopup");
+    popup.classList.add("popup-fadeout");
+
+    document.getElementById("errorMsg").style.display = "none";
+
+    pins.forEach((pin, i) => {
+        pin.value = "";
+        const canvas = canvasIcons[i];
+        const ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // để canvas background tự hiển thị trứng trống
+    });
+
+    pins[0].focus();
+
+
+    // CỬA
+
     const lockScreen = document.getElementById("lockScreen");
 
     // Bắt đầu animation mở cửa
     lockScreen.classList.add("closing");
+
 
     setTimeout(() => {
         lockScreen.style.display = "none";

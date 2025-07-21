@@ -130,6 +130,139 @@
         width: 200px;
         height: 101px;
     }
+    
+    #passwordPopup {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        transition: opacity 0.3s ease;
+    }
+    
+    .popup-hidden {
+        display: none;
+    }
+    
+    .popup-box {
+        background: #fff0f6;
+        padding: 30px;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        font-family: 'Bahianita', cursive;
+        color: #4b004b;
+        animation: popin 0.4s ease;
+        width: 280px;
+    }
+    
+    .popup-box input {
+        padding: 10px;
+        width: 80%;
+        margin: 15px 0;
+        border: 2px solid #d48fb0;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-family: 'Bahianita', cursive;
+        text-align: center;
+    }
+    
+    .popup-actions button {
+        margin: 0 10px;
+        padding: 8px 18px;
+        border: none;
+        border-radius: 8px;
+        background-color: #6e0238;
+        color: white;
+        font-family: 'Bahianita', cursive;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        letter-spacing: 2px;
+    }
+    
+    .popup-actions button:hover {
+        background-color: #5b1433;
+    }
+    /* CSS: thêm vào style.css */
+    
+    .popup-hidden {
+        opacity: 0;
+        filter: blur(8px);
+        transition: opacity 0.8s ease, filter 0.8s ease;
+    }
+    /* Hiệu ứng fade + blur ẩn popup */
+    
+    .popup-fadeout {
+        animation: fadeOutBlur 0.6s forwards;
+    }
+    
+    @keyframes fadeOutBlur {
+        from {
+            opacity: 1;
+            filter: blur(0px);
+        }
+        to {
+            opacity: 0;
+            filter: blur(10px);
+            pointer-events: none;
+        }
+    }
+    
+    #passwordPopup {
+        opacity: 1;
+        filter: blur(0);
+        transition: opacity 0.8s ease, filter 0.8s ease;
+    }
+    
+    @keyframes popin {
+        from {
+            transform: scale(0.8);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+    
+    .hidden {
+        display: none !important;
+    }
+    
+    .pin-icons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .pin-canvas {
+        width: 48px;
+        /* hiển thị nhỏ hơn nếu muốn */
+        height: 48px;
+        background: url('../res/egg-empty.png') no-repeat center center;
+        background-size: cover;
+        border-radius: 8px;
+    }
+    
+    .pin-inputs {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .pin-inputs input.pin {
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
+        text-align: center;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+    }
 </style>
 
 
@@ -142,5 +275,37 @@
     </div>
     <div class="lock-msg">Đang sửa chữa, quay lại vào <br>00:00<br>24/07/2025</div>
     <div id="timer">00:00:00</div>
-    <button id="enterBtn" onclick="unlockDoor()">Mở cửa</button>
+    <button id="enterBtn" onclick="showPopup()">Mở cửa</button>
+</div>
+
+
+
+<div id="passwordPopup" class="popup-hidden hidden">
+    <div class="popup-box">
+        <p>Nhập mật khẩu để mở cửa:</p>
+
+        <!-- Icons -->
+        <div class="pin-icons">
+            <canvas class="pin-canvas" id="icon0" width="96" height="96"></canvas>
+            <canvas class="pin-canvas" id="icon1" width="96" height="96"></canvas>
+            <canvas class="pin-canvas" id="icon2" width="96" height="96"></canvas>
+            <canvas class="pin-canvas" id="icon3" width="96" height="96"></canvas>
+        </div>
+
+
+
+        <!-- Inputs -->
+        <div class="pin-inputs">
+            <input type="password" maxlength="1" class="pin pin-input" id="pin0" />
+            <input type="password" maxlength="1" class="pin pin-input" id="pin1" />
+            <input type="password" maxlength="1" class="pin pin-input" id="pin2" />
+            <input type="password" maxlength="1" class="pin pin-input" id="pin3" />
+        </div>
+
+        <div class="popup-actions">
+            <button onclick="submitPassword()">OK</button>
+            <button onclick="closePopup()">Hủy</button>
+        </div>
+        <p id="errorMsg" style="color: red; display: none;">Sai mật khẩu!</p>
+    </div>
 </div>
