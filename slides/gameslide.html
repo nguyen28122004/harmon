@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1000, user-scalable=no" />
+    <title>Game Drag & Drop</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            user-select: none;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #ccc;
+            font-family: sans-serif;
+        }
+        
+        .game-container {
+            width: 1000px;
+            height: 600px;
+            margin: 0 auto;
+            display: flex;
+            border: 2px solid #000;
+        }
+        
+        .sidebar {
+            width: 150px;
+            background: #eee;
+            overflow-y: auto;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .gamearea {
+            flex: 1;
+            position: relative;
+            background: url('../gameAssets/back.png') no-repeat center center;
+            background-size: cover;
+        }
+        
+        canvas {
+            position: absolute;
+            cursor: grab;
+        }
+        
+        .sidebar canvas {
+            width: 60px !important;
+            height: 60px !important;
+            position: static !important;
+            cursor: pointer;
+        }
+        
+        canvas.dragging {
+            cursor: grabbing;
+            z-index: 10;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="sidebar" id="sidebar"></div>
+        <div class="gamearea" id="gamearea"></div>
+    </div>
+
+    <script>
+        const itemsMeta = {
+            hamster: {
+                src: '../gameAssets/hamster.png',
+                frames: 4,
+                scale: 1
+            },
+            brickBackground: {
+                src: '../gameAssets/brickBackground.png',
+                frames: 1,
+                scale: 1
+            },
+            bottomMessages: {
+                src: '../gameAssets/bottomMessages.png',
+                frames: 1,
+                scale: 1
+            },
+            light: {
+                src: '../gameAssets/light.png',
+                frames: 1,
+                scale: 1
+            },
+            shelves2: {
+                src: '../gameAssets/shelves2.png',
+                frames: 1,
+                scale: 1
+            },
+            letterBox: {
+                src: '../gameAssets/letterBox.png',
+                frames: 1,
+                scale: 1
+            },
+            plant1: {
+                src: '../gameAssets/plant1.png',
+                frames: 1,
+                scale: 1
+            },
+            creamRug: {
+                src: '../gameAssets/creamRug.png',
+                frames: 1,
+                scale: 1
+            },
+            gasStove: {
+                src: '../gameAssets/gasStove.png',
+                frames: 1,
+                scale: 1
+            },
+            Oven: {
+                src: '../gameAssets/Oven.png',
+                frames: 1,
+                scale: 1
+            },
+            plant2: {
+                src: '../gameAssets/plant2.png',
+                frames: 1,
+                scale: 1
+            },
+            sofa: {
+                src: '../gameAssets/sofa.png',
+                frames: 1,
+                scale: 1
+            },
+            table: {
+                src: '../gameAssets/table.png',
+                frames: 1,
+                scale: 1
+            },
+            wallShelves: {
+                src: '../gameAssets/wallShelves.png',
+                frames: 1,
+                scale: 1
+            },
+            window: {
+                src: '../gameAssets/window.png',
+                frames: 1,
+                scale: 1
+            },
+            plant3: {
+                src: '../gameAssets/plant3.png',
+                frames: 1,
+                scale: 1
+            }
+        };
+
+        const snapPositions = [{
+            x: 300,
+            y: 200
+        }, {
+            x: 500,
+            y: 350
+        }, {
+            x: 200,
+            y: 450
+        }, ];
+
+        const sidebar = document.getElementById('sidebar');
+        const gamearea = document.getElementById('gamearea');
+
+        function createOriginalCanvas(name, meta, callback) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            img.src = meta.src;
+
+            img.onload = () => {
+                const frameWidth = img.width / meta.frames;
+                const frameHeight = img.height;
+                const scale = meta.scale || 1;
+                canvas.width = frameWidth * scale;
+                canvas.height = frameHeight * scale;
+                ctx.drawImage(img, 0, 0, frameWidth, frameHeight, 0, 0, canvas.width, canvas.height);
+                callback(canvas);
+            };
+        }
+
+        function cloneCanvasWithEvents(original, name) {
+            const newCanvas = original.cloneNode(true);
+            newCanvas.dataset.name = name;
+            newCanvas.addEventListener('mousedown', (e) => {
+                startDrag(newCanvas, e);
+            });
+            newCanvas.addEventListener('dblclick', () => {
+                // Trả về sidebar
+                sidebar.appendChild(createSidebarThumbnail(name));
+                newCanvas.remove();
+            });
+            return newCanvas;
+        }
+
+        function createSidebarThumbnail(name) {
+            const meta = itemsMeta[name];
+            const previewCanvas = document.createElement('canvas');
+            previewCanvas.width = 60;
+            previewCanvas.height = 60;
+
+            const ctx = previewCanvas.getContext('2d');
+            const img = new Image();
+            img.src = meta.src;
+
+            img.onload = () => {
+                const frameWidth = img.width / meta.frames;
+                const frameHeight = img.height;
+
+                const scale = Math.min(60 / frameWidth, 60 / frameHeight);
+                const drawW = frameWidth * scale;
+                const drawH = frameHeight * scale;
+                const offsetX = (60 - drawW) / 2;
+                const offsetY = (60 - drawH) / 2;
+
+                ctx.drawImage(img, 0, 0, frameWidth, frameHeight, offsetX, offsetY, drawW, drawH);
+            };
+
+            previewCanvas.addEventListener('mousedown', (e) => {
+                createOriginalCanvas(name, meta, (realCanvas) => {
+                    const clone = cloneCanvasWithEvents(realCanvas, name);
+
+                    // Đặt vị trí chuột tại gamearea
+                    const gameRect = gamearea.getBoundingClientRect();
+                    clone.style.position = 'absolute';
+                    clone.style.left = (e.pageX - gameRect.left - realCanvas.width / 2) + 'px';
+                    clone.style.top = (e.pageY - gameRect.top - realCanvas.height / 2) + 'px';
+
+                    gamearea.appendChild(clone);
+
+                    // Khởi động drag luôn
+                    setTimeout(() => {
+                        const simulatedEvent = new MouseEvent('mousedown', {
+                            bubbles: true,
+                            clientX: e.clientX,
+                            clientY: e.clientY,
+                            offsetX: realCanvas.width / 2,
+                            offsetY: realCanvas.height / 2
+                        });
+                        clone.dispatchEvent(simulatedEvent);
+                    }, 0);
+                });
+            });
+
+
+            return previewCanvas;
+        }
+
+        function startDrag(canvas, e) {
+            let offsetX = e.offsetX;
+            let offsetY = e.offsetY;
+
+            canvas.classList.add('dragging');
+
+            function onMouseMove(ev) {
+                canvas.style.left = (ev.pageX - gamearea.offsetLeft - offsetX) + 'px';
+                canvas.style.top = (ev.pageY - gamearea.offsetTop - offsetY) + 'px';
+            }
+
+            function onMouseUp() {
+                canvas.classList.remove('dragging');
+                snapToPosition(canvas);
+                document.removeEventListener('mousemove', onMouseMove);
+                document.removeEventListener('mouseup', onMouseUp);
+            }
+
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mouseup', onMouseUp);
+        }
+
+        function snapToPosition(canvas) {
+            const canvasRect = canvas.getBoundingClientRect();
+            const gameRect = gamearea.getBoundingClientRect();
+            const cx = canvasRect.left + canvasRect.width / 2 - gameRect.left;
+            const cy = canvasRect.top + canvasRect.height / 2 - gameRect.top;
+
+            for (let pos of snapPositions) {
+                const dx = pos.x - cx;
+                const dy = pos.y - cy;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 50) {
+                    canvas.style.left = (pos.x - canvas.width / 2) + 'px';
+                    canvas.style.top = (pos.y - canvas.height / 2) + 'px';
+                    break;
+                }
+            }
+        }
+
+        // Khởi tạo sidebar
+        for (const name in itemsMeta) {
+            const thumb = createSidebarThumbnail(name);
+            sidebar.appendChild(thumb);
+        }
+    </script>
+</body>
+
+</html>
