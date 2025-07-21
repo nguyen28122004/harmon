@@ -19,7 +19,6 @@
         }
         
         .sidebar {
-            min-width: 64px !important;
             width: 80px;
             background: #efefef;
             overflow-y: auto;
@@ -43,19 +42,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            overflow: scroll;
-        }
-        
-        #gamearea::-webkit-scrollbar {
-            background-color: transparent;
-            width: 5px !important;
-            max-width: 5px;
-            min-width: 5px;
-        }
-        
-        #gamearea::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0.07);
-            border-radius: 50px;
         }
         
         #gameCanvas {
@@ -63,8 +49,6 @@
             background-size: contain;
             width: 1000px;
             height: 1000px;
-            min-width: 1000px;
-            min-height: 1000px;
             position: relative;
         }
         
@@ -93,7 +77,7 @@
     <div class="sidebar" id="sidebar"></div>
     <div id="gamearea">
         <div id="gameCanvas"></div>
-        <!-- <button id="logBtn" onclick="logAllItemPositions()">Log toàn bộ vị trí</button> -->
+        <button id="logBtn" onclick="logAllItemPositions()">Log toàn bộ vị trí</button>
     </div>
 
     <script>
@@ -271,23 +255,6 @@
             };
         }
 
-        function saveItemStates() {
-            const itemStates = [];
-            const items = gameCanvas.querySelectorAll('.game-item');
-
-            items.forEach((item) => {
-                const key = item.dataset.key;
-                const position = JSON.parse(item.dataset.position || '{}');
-                itemStates.push({
-                    key,
-                    position
-                });
-            });
-
-            localStorage.setItem('gameItemStates', JSON.stringify(itemStates));
-        }
-
-
         function createCanvasItem(key, meta, isClone = false, initialOffset = {
             x: 0,
             y: 0
@@ -414,7 +381,7 @@
                         y: finalY
                     });
                     canvas.dataset.key = key;
-                    saveItemStates();
+
                     console.log(`Item "${key}" position: (${finalX}, ${finalY})`);
                 }
             };
@@ -476,31 +443,11 @@
                 console.log(`${key}:`, pos);
             });
         }
-        // Khôi phục trạng thái nếu có
-        const savedStates = JSON.parse(localStorage.getItem('gameItemStates') || '[]');
-        const keysPlaced = new Set();
-
-        savedStates.forEach(({
-            key,
-            position
-        }) => {
-            if (items[key]) {
-                const meta = items[key];
-                const clone = createCanvasItem(key, meta, true, {}, position);
-                clone.dataset.position = JSON.stringify(position);
-                clone.dataset.key = key;
-                gameCanvas.appendChild(clone);
-                activeItems.add(key);
-                keysPlaced.add(key);
-            }
-        });
 
         for (const key in items) {
-            if (!keysPlaced.has(key)) {
-                const canvas = createCanvasItem(key, items[key]);
-                canvas.id = 'sidebar-' + key;
-                sidebar.appendChild(canvas);
-            }
+            const canvas = createCanvasItem(key, items[key]);
+            canvas.id = 'sidebar-' + key;
+            sidebar.appendChild(canvas);
         }
     </script>
 </body>
