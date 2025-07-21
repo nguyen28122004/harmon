@@ -109,12 +109,12 @@ Promise.all([
         document.getElementById('slide1').innerHTML = data;
         setupSpriteAnimation({
             canvasId: 'eggmonCanvas1',
-            imageSrc: 'res/eggmon11.png',
+            imageSrc: 'res/eggmon10.png',
             frameWidth: 500,
             frameHeight: 500,
             columns: 4,
             rows: 3,
-            targetRow: 2,
+            targetRow: 1,
             frameRate: 160
         });
     }),
@@ -386,7 +386,10 @@ Promise.all([
 ]).then(() => {
     // Sau khi load xong tất cả slide, active slide đầu tiên
     const savedSlide = parseInt(localStorage.getItem("lastSlide")) || 0;
-    slides[savedSlide].classList.add("active");
     currentSlide = savedSlide;
+    showSlide(currentSlide); // Gọi để áp dụng background tương ứng
+    slides[currentSlide].classList.add("active");
     updateNavButtons();
+
+
 });
