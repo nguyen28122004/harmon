@@ -165,3 +165,24 @@ canvas {
         opacity: 1;
     }
 }
+
+@font-face {
+    font-family: 'MotherlandSignature';
+    src: url('./fonts/NVN-Motherland-Signature-1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hijrnotes';
+    src: url('./fonts/MTD-Hijrnotes.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Brunette';
+    src: url('./fonts/SVN-Brunette.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

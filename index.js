@@ -109,12 +109,12 @@ Promise.all([
         document.getElementById('slide1').innerHTML = data;
         setupSpriteAnimation({
             canvasId: 'eggmonCanvas1',
-            imageSrc: 'res/eggmon12.png',
+            imageSrc: 'res/eggmon11.png',
             frameWidth: 500,
             frameHeight: 500,
             columns: 4,
             rows: 3,
-            targetRow: 1,
+            targetRow: 2,
             frameRate: 160
         });
     }),
@@ -305,10 +305,6 @@ Promise.all([
             targetRow: 0,
             frameRate: 160
         });
-
-        document.body.style.background = "url('/res/beach.jpg')";
-        document.body.style.background = "url('/res/beach.jpg') no-repeat center center fixed";
-        document.body.style.backgroundSize = "cover";
     }),
 
     fetch('slides/slide13.html').then(res => res.text()).then(data => {
@@ -353,7 +349,38 @@ Promise.all([
 
     fetch('slides/slide14.html').then(res => res.text()).then(data => {
         document.getElementById('slide14').innerHTML = data;
+        setupSpriteAnimation({
+            canvasId: 'letter14',
+            imageSrc: 'res/letter2.png',
+            frameWidth: 96,
+            frameHeight: 96,
+            columns: 3,
+            rows: 1,
+            targetRow: 0,
+            frameRate: 160
+        });
 
+        setupSpriteAnimation({
+            canvasId: 'birthdayCake14',
+            imageSrc: 'res/birthdayCake.png',
+            frameWidth: 450,
+            frameHeight: 450,
+            columns: 3,
+            rows: 1,
+            targetRow: 0,
+            frameRate: 160
+        });
+
+        setupSpriteAnimation({
+            canvasId: 'heartLove14',
+            imageSrc: 'res/heartLove.png',
+            frameWidth: 300,
+            frameHeight: 300,
+            columns: 7,
+            rows: 1,
+            targetRow: 0,
+            frameRate: 160
+        });
     })
 
 ]).then(() => {
