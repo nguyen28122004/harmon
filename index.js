@@ -511,7 +511,7 @@ function unlockDoor() {
         const savedSlide = parseInt(localStorage.getItem("lastSlide")) || 0;
         currentSlide = savedSlide;
 
-        // Gọi showSlide để xử lý hiệu ứng mượt mà
+        // Gọi showSlide để xử lý hiệu ứng mượt 
         showSlide(currentSlide);
     }, 1800);
 }
