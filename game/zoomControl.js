@@ -4,7 +4,7 @@ const gameCanvas = document.getElementById('gameCanvas');
 
 export function initZoomControl() {
     scaleSlider.addEventListener('input', () => updateScale(parseFloat(scaleSlider.value)));
-
+    updateScale(parseFloat(scaleSlider.value));
     window.addEventListener('wheel', (e) => {
         if (e.ctrlKey) {
             e.preventDefault();

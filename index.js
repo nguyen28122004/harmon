@@ -6,8 +6,8 @@ const nextBtn = document.getElementById("nextBtn");
 const prevBtn = document.getElementById("prevBtn");
 
 function updateNavButtons() {
-    prevBtn.style.display = currentSlide === 0 ? "none" : "block";
-    nextBtn.style.display = currentSlide === slides.length - 1 || currentSlide === 12 ? "none" : "block";
+    prevBtn.style.display = currentSlide === 0 || currentSlide === 14 ? "none" : "block";
+    nextBtn.style.display = currentSlide === slides.length - 1 || currentSlide === 12 || currentSlide === 13 ? "none" : "block";
 }
 let currentBgUrl = ""; // Lưu ảnh hiện tại (rỗng nếu đang dùng màu nền)
 
@@ -50,7 +50,7 @@ function smoothBackgroundChange(newImageUrl = "") {
 
 
 function showSlide(index) {
-    if (index < 10)
+    if (index < 10 || index > 13)
         smoothBackgroundChange("")
     else if (index > 10) {
         smoothBackgroundChange('./res/beach.jpg');
@@ -429,6 +429,10 @@ Promise.all([
 
     fetch('slides/slide14.html').then(res => res.text()).then(data => {
         document.getElementById('slide14').innerHTML = data;
+
+        document.getElementById("birthdayCake14").addEventListener("click", () => showSlide(currentSlide + 1))
+
+
         setupSpriteAnimation({
             canvasId: 'letter14',
             imageSrc: 'res/letter2.png',
@@ -461,7 +465,71 @@ Promise.all([
             targetRow: 0,
             frameRate: 160
         });
+    }),
+    fetch('slides/gameslide.html').then(res => res.text()).then(data => {
+        document.getElementById('game').innerHTML = data;
+        const container = document.getElementById('container');
+        const iframe = document.createElement('iframe');
+
+        iframe.src = './game/gameslide.html'; // Đường dẫn tới file HTML cần load
+        iframe.style.width = '100%';
+        iframe.style.height = '100vh';
+        iframe.style.border = 'none';
+
+        container.appendChild(iframe);
+        // document.getElementById("sidebar-wrapper").append(prevBtn);
+        iframe.onload = () => {
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+            sideBarPrevBtn = prevBtn.cloneNode(true);
+            sideBarPrevBtn.querySelectorAll("img")[0].src = "../res/leftButton.png";
+            sideBarWrapper = iframeDoc.getElementById("sidebar-wrapper");
+            sideBarWrapper.insertBefore(sideBarPrevBtn, sideBarWrapper.firstChild);
+            sideBarPrevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
+        };
+
+        // Setup popup Eggmon
+        setupSpriteAnimation({
+            canvasId: 'eggmonPopupCanvas',
+            imageSrc: 'res/eggmon11.png',
+            frameWidth: 500,
+            frameHeight: 500,
+            columns: 4,
+            rows: 3,
+            targetRow: 1,
+            frameRate: 180
+        });
+
+        // Hiện popup sau khi slide load xong
+        setTimeout(() => {
+            const popup = document.getElementById("greetingPopup");
+            const overlay = document.getElementById("popupOverlay");
+
+            popup.classList.remove("hidden");
+            popup.classList.add("fadeInPopup");
+            overlay.classList.remove("hidden");
+            overlay.classList.add("active");
+        }, 1000);
+
+
+        // Nút đóng popup có hiệu ứng fade blur
+        document.getElementById("closeGreetingBtn").addEventListener("click", () => {
+            const popup = document.getElementById("greetingPopup");
+            const overlay = document.getElementById("popupOverlay");
+
+            popup.classList.remove("fadeInPopup");
+            popup.classList.add("fadeOutPopupBlur");
+            overlay.classList.remove("active");
+
+            setTimeout(() => {
+                popup.style.display = "none";
+                overlay.style.display = "none";
+            }, 600);
+        });
+
+
     })
+
+
 
 ]).then(() => {
     // Sau khi load xong tất cả slide, active slide đầu tiên
@@ -475,6 +543,16 @@ Promise.all([
     }
 
 });
+
+function initZoomControl() {
+    window.addEventListener('wheel', (e) => {
+        if (e.ctrlKey) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+}
+
+
 
 function unlockDoor() {
 
