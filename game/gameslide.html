@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Game kéo thả</title>
+    <link rel="stylesheet" href="gameStyle.css">
+</head>
+
+<body>
+    <div class="sidebar" id="sidebar"></div>
+    <div id="gamearea">
+        <div id="gameCanvasWrapper">
+            <div id="gameCanvas">
+                <img id="backImage" src="../gameAssets/back.png" alt="Background" />
+            </div>
+        </div>
+    </div>
+    <div class="rightbar">
+        <button id="resetBtn">Reset Items</button>
+        <div class="snap-toggle">
+            <label class="label-text">Snap Position</label>
+            <label class="switch">
+                <input type="checkbox" id="snapToggle" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="scale-control">
+            <label>Scale: <span id="scaleValue">1.0</span>x</label>
+            <input type="range" id="scaleSlider" min="0.1" max="2" step="0.1" value="1">
+        </div>
+        <div id="contextMenu"></div>
+    </div>
+
+
+
+    <!-- Import các module JS -->
+    <script type="module">
+        import './items.js'; import './contextMenu.js'; import './logic.js'; import './stateManager.js'; import './zoomControl.js'; import './game.js';
+    </script>
+
+</body>
+
+</html>
