@@ -179,6 +179,18 @@ export const items = {
         rownum: 1,
         row: 0
     },
+    starRug: {
+        src: '../gameAssets/starRug.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: {
+            x: 375,
+            y: 445
+        },
+        rownum: 1,
+        row: 0
+    },
 
     table: {
         src: '../gameAssets/table.png',
@@ -338,6 +350,42 @@ export const items = {
     },
     sofa10: {
         src: '../gameAssets/sofa10.png',
+        frames: 1,
+        scale: 1.1,
+        layer: 6,
+        targetPosition: {
+            x: 540,
+            y: 450
+        },
+        rownum: 1,
+        row: 0
+    },
+    sofa11: {
+        src: '../gameAssets/sofa11.png',
+        frames: 1,
+        scale: 1.1,
+        layer: 6,
+        targetPosition: {
+            x: 540,
+            y: 450
+        },
+        rownum: 1,
+        row: 0
+    },
+    sofa12: {
+        src: '../gameAssets/sofa12.png',
+        frames: 1,
+        scale: 1.1,
+        layer: 6,
+        targetPosition: {
+            x: 540,
+            y: 450
+        },
+        rownum: 1,
+        row: 0
+    },
+    sofa13: {
+        src: '../gameAssets/sofa13.png',
         frames: 1,
         scale: 1.1,
         layer: 6,
@@ -515,7 +563,308 @@ export const items = {
         rownum: 3,
         row: 0
     },
+    eggmon13: {
+        src: '../gameAssets/eggmon13.png',
+        frames: 4,
+        scale: 0.4,
+        layer: 7,
+        targetPosition: {
+            x: 400,
+            y: 545
+        },
+        rownum: 3,
+        row: 0
+    },
 
+
+    emoteSketch0: {
+        src: '../gameAssets/emoteSketch0.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch1: {
+        src: '../gameAssets/emoteSketch1.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch2: {
+        src: '../gameAssets/emoteSketch2.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch3: {
+        src: '../gameAssets/emoteSketch3.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch4: {
+        src: '../gameAssets/emoteSketch4.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch5: {
+        src: '../gameAssets/emoteSketch5.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch6: {
+        src: '../gameAssets/emoteSketch6.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch7: {
+        src: '../gameAssets/emoteSketch7.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch8: {
+        src: '../gameAssets/emoteSketch8.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch9: {
+        src: '../gameAssets/emoteSketch9.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch10: {
+        src: '../gameAssets/emoteSketch10.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch11: {
+        src: '../gameAssets/emoteSketch11.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch12: {
+        src: '../gameAssets/emoteSketch12.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch13: {
+        src: '../gameAssets/emoteSketch13.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch14: {
+        src: '../gameAssets/emoteSketch14.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch15: {
+        src: '../gameAssets/emoteSketch15.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch16: {
+        src: '../gameAssets/emoteSketch16.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch17: {
+        src: '../gameAssets/emoteSketch17.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch18: {
+        src: '../gameAssets/emoteSketch18.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch19: {
+        src: '../gameAssets/emoteSketch19.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch20: {
+        src: '../gameAssets/emoteSketch20.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch21: {
+        src: '../gameAssets/emoteSketch21.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch22: {
+        src: '../gameAssets/emoteSketch22.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    emoteSketch23: {
+        src: '../gameAssets/emoteSketch23.png',
+        frames: 3,
+        scale: 0.5,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
     hamster: {
         src: '../gameAssets/hamster.png',
         frames: 4,
@@ -554,6 +903,30 @@ export const items = {
     },
     box2: {
         src: '../gameAssets/box2.png',
+        frames: 1,
+        scale: 0.7,
+        layer: 8,
+        targetPosition: {
+            x: 700,
+            y: 660
+        },
+        rownum: 1,
+        row: 0
+    },
+    box3: {
+        src: '../gameAssets/box3.png',
+        frames: 1,
+        scale: 0.7,
+        layer: 8,
+        targetPosition: {
+            x: 700,
+            y: 660
+        },
+        rownum: 1,
+        row: 0
+    },
+    box4: {
+        src: '../gameAssets/box4.png',
         frames: 1,
         scale: 0.7,
         layer: 8,
@@ -1070,5 +1443,185 @@ export const items = {
         rownum: 1,
         row: 0
     },
+    fishing: {
+        src: '../gameAssets/fishing.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    planet: {
+        src: '../gameAssets/planet.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    larten: {
+        src: '../gameAssets/larten.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    star: {
+        src: '../gameAssets/star.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    wishShip: {
+        src: '../gameAssets/wishShip.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    fish: {
+        src: '../gameAssets/fish.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    seaLight: {
+        src: '../gameAssets/seaLight.png',
+        frames: 4,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    turtle: {
+        src: '../gameAssets/turtle.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
 
+    treasure: {
+        src: '../gameAssets/treasure.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    snail: {
+        src: '../gameAssets/snail.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    anchor: {
+        src: '../gameAssets/anchor.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    jellyFish: {
+        src: '../gameAssets/jellyFish.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    rock: {
+        src: '../gameAssets/rock.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    clams: {
+        src: '../gameAssets/clams.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
+    bottle: {
+        src: '../gameAssets/bottle.png',
+        frames: 1,
+        scale: 1,
+        layer: 15,
+        targetPosition: {
+            x: 0,
+            y: 0
+        },
+        rownum: 1,
+        row: 0
+    },
 };
