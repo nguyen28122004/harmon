@@ -1,18 +1,18 @@
 import { restoreItemStates, resetItems } from './stateManager.js';
 import { initZoomControl } from './zoomControl.js';
-import { snapEnabled } from './logic.js';
+import { setSnapEnabled } from './logic.js';
 
 
 const sidebar = document.getElementById('sidebar');
 const gameCanvas = document.getElementById('gameCanvas');
 const activeItems = new Set();
 
-
+const snapToggle = document.getElementById("snapToggle");
+snapToggle.addEventListener("change", (e) => {
+    setSnapEnabled(e.target.checked); // ✅ gọi setter thay vì gán trực tiếp
+});
 
 restoreItemStates();
-document.getElementById('snapToggle').addEventListener('change', (e) => {
-    snapEnabled = e.target.checked;
-});
 
 document.getElementById('resetBtn').addEventListener('click', () => {
     resetItems();

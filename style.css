@@ -42,6 +42,10 @@ body {
     animation: fadeInScaleBlur 0.4s ease forwards;
 }
 
+.fade-in-scale-blur {
+    animation: fadeInScaleBlur 0.4s ease forwards;
+}
+
 @keyframes fadeInScale {
     from {
         opacity: 0;

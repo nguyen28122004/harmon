@@ -5,6 +5,10 @@ import { isRestoring } from './stateManager.js';
 export const activeItems = new Set();
 export let snapEnabled = true;
 
+export function setSnapEnabled(value) {
+    snapEnabled = value;
+}
+
 const sidebar = document.getElementById('sidebar');
 const gameCanvas = document.getElementById('gameCanvas');
 
@@ -41,27 +45,41 @@ export function createCanvasItem(key,
     canvas.classList.add(isClone ? 'game-item' : 'sidebar-item');
 
     img.onload = () => {
+        const totalRows = meta.rownum || 1;
+        const row = meta.row || 0;
+        canvas.dataset.rownum = meta.rownum;
+        canvas.dataset.row = meta.row;
+
+
         frameWidth = img.width / meta.frames;
-        frameHeight = img.height;
-        canvas.width = frameWidth * meta.scale;
-        canvas.height = frameHeight * meta.scale;
+        frameHeight = img.height / totalRows;
+        console.log(meta.row, ": ", frameWidth, "x", frameHeight);
+
+        const scale = parseFloat(canvas.dataset.scale || meta.scale || 1);
+        canvas.dataset.scale = scale;
+        canvas.width = frameWidth * scale;
+        canvas.height = frameHeight * scale;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Thiết lập đổ bóng mềm, đẹp
         ctx.shadowColor = 'rgba(0,0,0,0.2)';
         ctx.shadowBlur = 12;
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 6;
 
-        // Bo góc: dùng roundRect và clip để giới hạn vùng vẽ
         ctx.save();
         ctx.beginPath();
-        ctx.roundRect(0, 0, canvas.width, canvas.height, 12); // 12px bo góc
+        ctx.roundRect(0, 0, canvas.width, canvas.height, 12);
         ctx.clip();
 
-        // Vẽ ảnh có hiệu ứng shadow
-        ctx.drawImage(img, currentFrame * frameWidth, 0, frameWidth, frameHeight, 0, 0, canvas.width, canvas.height);
+        ctx.drawImage(
+            img,
+            currentFrame * frameWidth, // sx
+            row * frameHeight, // sy ← lấy đúng dòng
+            frameWidth, // sWidth
+            frameHeight, // sHeight
+            0, 0, canvas.width, canvas.height
+        );
         ctx.restore();
 
 
@@ -90,7 +108,14 @@ export function createCanvasItem(key,
                 ctx.clip();
 
                 // Vẽ ảnh có hiệu ứng shadow
-                ctx.drawImage(img, currentFrame * frameWidth, 0, frameWidth, frameHeight, 0, 0, canvas.width, canvas.height);
+                ctx.drawImage(
+                    img,
+                    currentFrame * frameWidth,
+                    row * frameHeight,
+                    frameWidth,
+                    frameHeight,
+                    0, 0, canvas.width, canvas.height
+                );
                 ctx.restore();
 
                 requestAnimationFrame(animate);

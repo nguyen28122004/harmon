@@ -238,7 +238,8 @@ input:checked+.slider:before {
     gap: 6px;
 }
 
-#scaleSlider {
+#scaleSlider,
+#scaleItemSlider {
     width: 100%;
     appearance: none;
     height: 6px;
@@ -249,7 +250,8 @@ input:checked+.slider:before {
     cursor: pointer;
 }
 
-#scaleSlider::-webkit-slider-thumb {
+#scaleSlider::-webkit-slider-thumb,
+#scaleItemSlider::-webkit-slider-thumb {
     appearance: none;
     width: 16px;
     height: 16px;
@@ -260,7 +262,8 @@ input:checked+.slider:before {
     transition: all 0.3s ease;
 }
 
-#scaleSlider::-moz-range-thumb {
+#scaleSlider::-moz-range-thumb,
+#scaleItemSlider::-moz-range-thumb {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -383,4 +386,45 @@ input:checked+.slider:before {
 
 #logBtn:hover {
     background: #555;
+}
+
+.fade-out-scale-blur {
+    animation: fadeOutScaleBlur 0.4s ease forwards;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInScaleBlur {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeOutScaleBlur {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.9);
+        filter: blur(8px);
+    }
 }
