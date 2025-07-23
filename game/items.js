@@ -219,7 +219,7 @@ export const items = {
         },
         rownum: 1,
         row: 0,
-        category: "Furniture"
+        category: "Table"
     },
     television: {
         src: '../gameAssets/television.png',
@@ -1077,19 +1077,19 @@ export const items = {
         row: 0,
         category: "Furniture"
     },
-    wallShelves2: {
-        src: '../gameAssets/wallShelves2.png',
-        frames: 1,
-        scale: 1,
-        layer: 13,
-        targetPosition: {
-            x: 230,
-            y: 225
-        },
-        rownum: 1,
-        row: 0,
-        category: "Furniture"
-    },
+    // wallShelves2: {
+    //     src: '../gameAssets/wallShelves2.png',
+    //     frames: 1,
+    //     scale: 1,
+    //     layer: 13,
+    //     targetPosition: {
+    //         x: 230,
+    //         y: 225
+    //     },
+    //     rownum: 1,
+    //     row: 0,
+    //     category: "Furniture"
+    // },
     pinkWindow: {
         src: '../gameAssets/pinkWindow.png',
         frames: 1,
@@ -1438,7 +1438,7 @@ export const items = {
         },
         rownum: 1,
         row: 0,
-        category: "Furniture"
+        category: "Table"
     },
     tableCake: {
         src: '../gameAssets/tableCake.png',
@@ -1451,7 +1451,7 @@ export const items = {
         },
         rownum: 1,
         row: 0,
-        category: "Furniture"
+        category: "Table"
     },
     fan1: {
         src: '../gameAssets/fan1.png',
@@ -1525,7 +1525,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Shop"
     },
     pet1: {
         src: '../gameAssets/pet1.png',
@@ -1739,4 +1740,681 @@ export const items = {
         rownum: 1,
         row: 0
     },
+    background1: {
+        src: "../gameAssets/background1.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    background2: {
+        src: "../gameAssets/background2.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    background3: {
+        src: "../gameAssets/background3.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    background4: {
+        src: "../gameAssets/background4.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    background5: {
+        src: "../gameAssets/background5.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    background6: {
+        src: "../gameAssets/background6.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Background"
+    },
+    blender: {
+        src: "../gameAssets/blender.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    bottomMessages10: {
+        src: "../gameAssets/bottomMessages10.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    bottomMessages11: {
+        src: "../gameAssets/bottomMessages11.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    bottomMessages6: {
+        src: "../gameAssets/bottomMessages6.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    bottomMessages7: {
+        src: "../gameAssets/bottomMessages7.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    bottomMessages8: {
+        src: "../gameAssets/bottomMessages8.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    bottomMessages9: {
+        src: "../gameAssets/bottomMessages9.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Message"
+    },
+    box10: {
+        src: "../gameAssets/box10.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    box5: {
+        src: "../gameAssets/box5.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    box6: {
+        src: "../gameAssets/box6.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    box7: {
+        src: "../gameAssets/box7.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    box8: {
+        src: "../gameAssets/box8.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    box9: {
+        src: "../gameAssets/box9.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Box"
+    },
+    cat: {
+        src: "../gameAssets/cat.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Animal"
+    },
+    cat2: {
+        src: "../gameAssets/cat2.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Animal"
+    },
+    catVegetableShop: {
+        src: "../gameAssets/catVegetableShop.png",
+        frames: 1,
+        scale: 1,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 1,
+        row: 0,
+        category: "Shop"
+    },
+    eggmon14: {
+        src: "../gameAssets/eggmon14.png",
+        frames: 4,
+        scale: 0.4,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 3,
+        row: 0,
+        category: "HarMon"
+    },
+    eggmon15: {
+        src: "../gameAssets/eggmon15.png",
+        frames: 4,
+        scale: 0.4,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 3,
+        row: 0,
+        category: "HarMon"
+    },
+    eggmon16: {
+        src: "../gameAssets/eggmon16.png",
+        frames: 4,
+        scale: 0.4,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 3,
+        row: 0,
+        category: "HarMon"
+    },
+    eggmon17: {
+        src: "../gameAssets/eggmon17.png",
+        frames: 4,
+        scale: 0.4,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 3,
+        row: 0,
+        category: "HarMon"
+    },
+    eggmon18: {
+        src: "../gameAssets/eggmon18.png",
+        frames: 4,
+        scale: 0.4,
+        layer: 5,
+        targetPosition: { x: 400, y: 545 },
+        rownum: 3,
+        row: 0,
+        category: "HarMon"
+    },
+    decor1: {
+        src: '../gameAssets/decor1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    desk1: {
+        src: '../gameAssets/desk1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    egg1: {
+        src: '../gameAssets/egg1.png',
+        frames: 3,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    food1: {
+        src: '../gameAssets/food1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    food2: {
+        src: '../gameAssets/food2.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    fridge1: {
+        src: '../gameAssets/fridge1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    fruitCake: {
+        src: '../gameAssets/fruitCake.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    lamp3: {
+        src: '../gameAssets/lamp3.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    lamp5: {
+        src: '../gameAssets/lamp5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    milk: {
+        src: '../gameAssets/milk.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    mirror1: {
+        src: '../gameAssets/mirror1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    other1: {
+        src: '../gameAssets/other1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0
+    },
+    picture1: {
+        src: '../gameAssets/picture1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    plant4: {
+        src: '../gameAssets/plant4.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Plant"
+    },
+    plant5: {
+        src: '../gameAssets/plant5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Plant"
+    },
+    ps5: {
+        src: '../gameAssets/ps5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    pudding: {
+        src: '../gameAssets/pudding.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    rug1: {
+        src: '../gameAssets/rug1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug2: {
+        src: '../gameAssets/rug2.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug3: {
+        src: '../gameAssets/rug3.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug4: {
+        src: '../gameAssets/rug4.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug5: {
+        src: '../gameAssets/rug5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug6: {
+        src: '../gameAssets/rug6.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    shoes: {
+        src: '../gameAssets/shoes.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0
+    },
+    shop2: {
+        src: '../gameAssets/shop2.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Shop"
+    },
+    table1: {
+        src: '../gameAssets/table1.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Table"
+    },
+    table2: {
+        src: '../gameAssets/table2.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Table"
+    },
+    table3: {
+        src: '../gameAssets/table3.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Table"
+    },
+    table4: {
+        src: '../gameAssets/table4.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Table"
+    },
+    table5: {
+        src: '../gameAssets/table5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Table"
+    },
+    teddyBear: {
+        src: '../gameAssets/teddyBear.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Animal"
+    },
+    teddyJelly: {
+        src: '../gameAssets/teddyJelly.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Food"
+    },
+    television2: {
+        src: '../gameAssets/television2.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    televisionCat: {
+        src: '../gameAssets/televisionCat.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    tent: {
+        src: '../gameAssets/tent.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0
+    },
+    washingMachine: {
+        src: '../gameAssets/washingMachine.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Furniture"
+    },
+    window5: {
+        src: '../gameAssets/window5.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Window"
+    },
+    window6: {
+        src: '../gameAssets/window6.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Window"
+    },
+    window7: {
+        src: '../gameAssets/window7.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Window"
+    },
+    window8: {
+        src: '../gameAssets/window8.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Window"
+    },
+    windowCat: {
+        src: '../gameAssets/windowCat.png',
+        frames: 1,
+        scale: 1,
+        layer: 1,
+        targetPosition: { x: 0, y: 0 },
+        rownum: 1,
+        row: 0,
+        category: "Window"
+    }
 };
