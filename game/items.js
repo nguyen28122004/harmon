@@ -207,6 +207,66 @@ export const items = {
         row: 0,
         category: "Rug"
     },
+    rug1: {
+        src: '../gameAssets/rug1.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug2: {
+        src: '../gameAssets/rug2.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug3: {
+        src: '../gameAssets/rug3.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug4: {
+        src: '../gameAssets/rug4.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug5: {
+        src: '../gameAssets/rug5.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
+    rug6: {
+        src: '../gameAssets/rug6.png',
+        frames: 1,
+        scale: 1,
+        layer: 4,
+        targetPosition: { x: 375, y: 445 },
+        rownum: 1,
+        row: 0,
+        category: "Rug"
+    },
 
     table: {
         src: '../gameAssets/table.png',
@@ -1743,9 +1803,12 @@ export const items = {
     background1: {
         src: "../gameAssets/background1.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1753,9 +1816,12 @@ export const items = {
     background2: {
         src: "../gameAssets/background2.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1763,9 +1829,12 @@ export const items = {
     background3: {
         src: "../gameAssets/background3.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1773,9 +1842,12 @@ export const items = {
     background4: {
         src: "../gameAssets/background4.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1783,9 +1855,12 @@ export const items = {
     background5: {
         src: "../gameAssets/background5.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1793,9 +1868,12 @@ export const items = {
     background6: {
         src: "../gameAssets/background6.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 0,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Background"
@@ -1805,7 +1883,7 @@ export const items = {
         frames: 1,
         scale: 1,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 0, y: 0 },
         rownum: 1,
         row: 0,
         category: "Furniture"
@@ -1813,9 +1891,12 @@ export const items = {
     bottomMessages10: {
         src: "../gameAssets/bottomMessages10.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1823,9 +1904,12 @@ export const items = {
     bottomMessages11: {
         src: "../gameAssets/bottomMessages11.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1833,9 +1917,12 @@ export const items = {
     bottomMessages6: {
         src: "../gameAssets/bottomMessages6.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1843,9 +1930,12 @@ export const items = {
     bottomMessages7: {
         src: "../gameAssets/bottomMessages7.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1853,9 +1943,12 @@ export const items = {
     bottomMessages8: {
         src: "../gameAssets/bottomMessages8.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1863,9 +1956,12 @@ export const items = {
     bottomMessages9: {
         src: "../gameAssets/bottomMessages9.png",
         frames: 1,
-        scale: 1,
-        layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        scale: 0.883,
+        layer: 1,
+        targetPosition: {
+            x: 170,
+            y: 115
+        },
         rownum: 1,
         row: 0,
         category: "Message"
@@ -1873,9 +1969,9 @@ export const items = {
     box10: {
         src: "../gameAssets/box10.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1883,9 +1979,9 @@ export const items = {
     box5: {
         src: "../gameAssets/box5.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1893,9 +1989,9 @@ export const items = {
     box6: {
         src: "../gameAssets/box6.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1903,9 +1999,9 @@ export const items = {
     box7: {
         src: "../gameAssets/box7.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1913,9 +2009,9 @@ export const items = {
     box8: {
         src: "../gameAssets/box8.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1923,9 +2019,9 @@ export const items = {
     box9: {
         src: "../gameAssets/box9.png",
         frames: 1,
-        scale: 1,
+        scale: 0.7,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 740, y: 660 },
         rownum: 1,
         row: 0,
         category: "Box"
@@ -1935,7 +2031,7 @@ export const items = {
         frames: 1,
         scale: 1,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 0, y: 0 },
         rownum: 1,
         row: 0,
         category: "Animal"
@@ -1945,7 +2041,7 @@ export const items = {
         frames: 1,
         scale: 1,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 0, y: 0 },
         rownum: 1,
         row: 0,
         category: "Animal"
@@ -1955,7 +2051,7 @@ export const items = {
         frames: 1,
         scale: 1,
         layer: 5,
-        targetPosition: { x: 400, y: 545 },
+        targetPosition: { x: 0, y: 0 },
         rownum: 1,
         row: 0,
         category: "Shop"
@@ -1964,7 +2060,7 @@ export const items = {
         src: "../gameAssets/eggmon14.png",
         frames: 4,
         scale: 0.4,
-        layer: 5,
+        layer: 7,
         targetPosition: { x: 400, y: 545 },
         rownum: 3,
         row: 0,
@@ -1974,7 +2070,7 @@ export const items = {
         src: "../gameAssets/eggmon15.png",
         frames: 4,
         scale: 0.4,
-        layer: 5,
+        layer: 7,
         targetPosition: { x: 400, y: 545 },
         rownum: 3,
         row: 0,
@@ -1984,7 +2080,7 @@ export const items = {
         src: "../gameAssets/eggmon16.png",
         frames: 4,
         scale: 0.4,
-        layer: 5,
+        layer: 7,
         targetPosition: { x: 400, y: 545 },
         rownum: 3,
         row: 0,
@@ -1994,7 +2090,7 @@ export const items = {
         src: "../gameAssets/eggmon17.png",
         frames: 4,
         scale: 0.4,
-        layer: 5,
+        layer: 7,
         targetPosition: { x: 400, y: 545 },
         rownum: 3,
         row: 0,
@@ -2179,66 +2275,7 @@ export const items = {
         row: 0,
         category: "Food"
     },
-    rug1: {
-        src: '../gameAssets/rug1.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
-    rug2: {
-        src: '../gameAssets/rug2.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
-    rug3: {
-        src: '../gameAssets/rug3.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
-    rug4: {
-        src: '../gameAssets/rug4.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
-    rug5: {
-        src: '../gameAssets/rug5.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
-    rug6: {
-        src: '../gameAssets/rug6.png',
-        frames: 1,
-        scale: 1,
-        layer: 1,
-        targetPosition: { x: 0, y: 0 },
-        rownum: 1,
-        row: 0,
-        category: "Rug"
-    },
+
     shoes: {
         src: '../gameAssets/shoes.png',
         frames: 1,
