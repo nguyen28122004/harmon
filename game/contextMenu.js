@@ -190,6 +190,22 @@ if (eggmonStateSelector) {
         deleteBtn.addEventListener("click", () => {
             contextTarget.remove();
             saveItemStates();
+            // Tìm tab phù hợp để thêm lại
+const cat = contextMeta.category || 'Others';
+const currentTabBtn = document.querySelector('.tab-button-vertical.active');
+const currentTabName = currentTabBtn ? currentTabBtn.textContent : null;
+
+// Nếu item bị xóa, thì cho phép hiển thị lại trong tab phù hợp
+if (currentTabName === cat) {
+    if (!document.getElementById('sidebar-' + contextKey)) {
+        const newItem = createCanvasItem(contextKey, contextMeta);
+        newItem.id = 'sidebar-' + contextKey;
+        const tabContent = document.querySelector('.tab-content');
+        if (tabContent) {
+            tabContent.appendChild(newItem);
+        }
+    }
+}
             contextMenu.style.display = "none";
         });
     }
