@@ -1,6 +1,7 @@
 import { attachContextMenu } from './contextMenu.js';
 import { saveItemStates } from './stateManager.js';
 import { isRestoring } from './stateManager.js';
+import { items } from './items.js';
 
 export const activeItems = new Set();
 export let snapEnabled = true;
@@ -53,7 +54,7 @@ export function createCanvasItem(key,
 
         frameWidth = img.width / meta.frames;
         frameHeight = img.height / totalRows;
-        console.log(meta.row, ": ", frameWidth, "x", frameHeight);
+        // console.log(meta.row, ": ", frameWidth, "x", frameHeight);
 
         const scale = parseFloat(canvas.dataset.scale || meta.scale || 1);
         canvas.dataset.scale = scale;
@@ -158,9 +159,32 @@ export function createCanvasItem(key,
             clientY >= sidebarRect.top && clientY <= sidebarRect.bottom) {
             if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
             if (!document.getElementById('sidebar-' + key)) {
-                const newItem = createCanvasItem(key, meta);
-                newItem.id = 'sidebar-' + key;
-                sidebar.appendChild(newItem);
+                const cat = meta.category || 'Others';
+
+                // 🧠 Xác định tab hiện tại
+                const currentTabBtn = document.querySelector('.tab-button-vertical.active');
+                let currentTabName = null;
+                if (currentTabBtn) {
+                    currentTabName = currentTabBtn.textContent;
+                }
+
+
+                // 🔍 Nếu tab hiện tại là tab của item → hoàn trả về tab đó
+                if (currentTabName === cat) {
+                    if (!document.getElementById('sidebar-' + key)) {
+                        const newItem = createCanvasItem(key, meta);
+                        newItem.id = 'sidebar-' + key;
+                        const tabContent = document.querySelector('.tab-content');
+                        if (tabContent) {
+                            tabContent.appendChild(newItem);
+                        } else {
+                            sidebar.appendChild(newItem); // fallback
+                        }
+                    }
+                }
+
+                activeItems.delete(key);
+                if (typeof saveItemStates === 'function') saveItemStates();
             }
             activeItems.delete(key);
         } else {
@@ -196,7 +220,7 @@ export function createCanvasItem(key,
             });
             canvas.dataset.key = key;
             saveItemStates();
-            console.log(`Item "${key}" position: (${finalX}, ${finalY})`);
+            // console.log(`Item "${key}" position: (${finalX}, ${finalY})`);
         }
         if (!isRestoring) {
             saveItemStates();
@@ -273,16 +297,38 @@ export function createCanvasItem(key,
 
         // 🔁 Hoàn trả (dblclick)
         canvas.addEventListener('dblclick', () => {
-            if (canvas.dataset.ignoreClick === 'true') return; // 🛑 Không hoàn trả
+            if (canvas.dataset.ignoreClick === 'true') return;
             if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
-            if (!document.getElementById('sidebar-' + key)) {
-                const newItem = createCanvasItem(key, meta);
-                newItem.id = 'sidebar-' + key;
-                sidebar.appendChild(newItem);
+
+            const cat = meta.category || 'Others';
+
+            // 🧠 Xác định tab hiện tại
+            const currentTabBtn = document.querySelector('.tab-button-vertical.active');
+            let currentTabName = null;
+            if (currentTabBtn) {
+                currentTabName = currentTabBtn.textContent;
             }
+
+
+            // 🔍 Nếu tab hiện tại là tab của item → hoàn trả về tab đó
+            if (currentTabName === cat) {
+                if (!document.getElementById('sidebar-' + key)) {
+                    const newItem = createCanvasItem(key, meta);
+                    newItem.id = 'sidebar-' + key;
+                    const tabContent = document.querySelector('.tab-content');
+                    if (tabContent) {
+                        tabContent.appendChild(newItem);
+                    } else {
+                        sidebar.appendChild(newItem); // fallback
+                    }
+                }
+            }
+
             activeItems.delete(key);
-            if (typeof saveItemStates === 'function') saveItemStates(); // ✅ Ghi lại trạng thái
+            if (typeof saveItemStates === 'function') saveItemStates();
         });
+
+
     } else {
         canvas.id = 'sidebar-' + key;
         canvas.addEventListener('mousedown', (e) => {
@@ -345,5 +391,65 @@ export function createCanvasItem(key,
     attachContextMenu(canvas, key, meta);
     return canvas;
 
+
+}
+
+
+
+export function renderSidebarTabs() {
+    sidebar.innerHTML = '';
+
+    // Tạo container cho phần tab nằm dọc
+    const tabWrapper = document.createElement('div');
+    tabWrapper.className = 'tab-wrapper';
+
+    const tabHeader = document.createElement('div');
+    tabHeader.className = 'tab-header-vertical';
+
+    const tabContent = document.createElement('div');
+    tabContent.className = 'tab-content';
+
+    // Gom item theo category
+    const categories = {};
+    for (const key in items) {
+        const meta = items[key];
+        const cat = meta.category || 'Others';
+        if (!categories[cat]) categories[cat] = [];
+        categories[cat].push({ key, meta });
+    }
+
+    const tabNames = Object.keys(categories);
+    let currentTab = tabNames[0];
+
+    tabNames.forEach((catName, index) => {
+        const tabBtn = document.createElement('button');
+        tabBtn.className = 'tab-button-vertical';
+        tabBtn.textContent = catName;
+        if (index === 0) tabBtn.classList.add('active');
+
+        tabBtn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-button-vertical').forEach(btn => btn.classList.remove('active'));
+            tabBtn.classList.add('active');
+            renderTabContent(catName);
+        });
+
+        tabHeader.appendChild(tabBtn);
+    });
+
+    function renderTabContent(catName) {
+        tabContent.innerHTML = '';
+        categories[catName].forEach(({ key, meta }) => {
+            if (activeItems.has(key)) return; // 🛑 Đã có trên canvas → bỏ qua
+            const canvasItem = createCanvasItem(key, meta);
+            tabContent.appendChild(canvasItem);
+        });
+    }
+
+
+    renderTabContent(currentTab);
+
+    tabWrapper.appendChild(tabHeader);
+    tabWrapper.appendChild(tabContent);
+    sidebar.appendChild(tabWrapper);
 
 }

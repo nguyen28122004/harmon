@@ -9,7 +9,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Background"
     },
     stripeBackground: {
         src: '../gameAssets/stripeBackground.png',
@@ -21,7 +22,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Background"
     },
     beachBackground: {
         src: '../gameAssets/beachBackground.png',
@@ -33,7 +35,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Background"
     },
     oceanBackground: {
         src: '../gameAssets/oceanBackground.png',
@@ -45,7 +48,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Background"
     },
     nightBackground: {
         src: '../gameAssets/nightBackground.png',
@@ -57,7 +61,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Background"
     },
     bottomMessages1: {
         src: '../gameAssets/bottomMessages1.png',
@@ -69,7 +74,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Message"
     },
     bottomMessages2: {
         src: '../gameAssets/bottomMessages2.png',
@@ -81,7 +87,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Message"
     },
     bottomMessages3: {
         src: '../gameAssets/bottomMessages3.png',
@@ -93,7 +100,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Message"
     },
     bottomMessages4: {
         src: '../gameAssets/bottomMessages4.png',
@@ -105,7 +113,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Message"
     },
     bottomMessages5: {
         src: '../gameAssets/bottomMessages5.png',
@@ -117,7 +126,8 @@ export const items = {
             y: 115
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Message"
     },
     gasStove: {
         src: '../gameAssets/gasStove.png',
@@ -129,7 +139,8 @@ export const items = {
             y: 535
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     Oven: {
         src: '../gameAssets/Oven.png',
@@ -141,7 +152,8 @@ export const items = {
             y: 455
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     roundRug: {
         src: '../gameAssets/roundRug.png',
@@ -153,7 +165,8 @@ export const items = {
             y: 445
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Rug"
     },
     creamRug: {
         src: '../gameAssets/creamRug.png',
@@ -165,7 +178,8 @@ export const items = {
             y: 445
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Rug"
     },
     beachRug: {
         src: '../gameAssets/beachRug.png',
@@ -177,7 +191,8 @@ export const items = {
             y: 445
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Rug"
     },
     starRug: {
         src: '../gameAssets/starRug.png',
@@ -189,7 +204,8 @@ export const items = {
             y: 445
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Rug"
     },
 
     table: {
@@ -202,7 +218,8 @@ export const items = {
             y: 545
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     television: {
         src: '../gameAssets/television.png',
@@ -214,7 +231,8 @@ export const items = {
             y: 535
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     wardrobe: {
         src: '../gameAssets/wardrobe.png',
@@ -226,7 +244,8 @@ export const items = {
             y: 535
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Wardrobe"
     },
     wardrobe1: {
         src: '../gameAssets/wardrobe1.png',
@@ -238,7 +257,8 @@ export const items = {
             y: 535
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Wardrobe"
     },
     sofa1: {
         src: '../gameAssets/sofa1.png',
@@ -250,7 +270,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa2: {
         src: '../gameAssets/sofa2.png',
@@ -262,7 +283,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa3: {
         src: '../gameAssets/sofa3.png',
@@ -274,7 +296,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa4: {
         src: '../gameAssets/sofa4.png',
@@ -286,7 +309,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa5: {
         src: '../gameAssets/sofa5.png',
@@ -298,7 +322,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa6: {
         src: '../gameAssets/sofa6.png',
@@ -310,7 +335,8 @@ export const items = {
             y: 460
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa7: {
         src: '../gameAssets/sofa7.png',
@@ -322,7 +348,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa8: {
         src: '../gameAssets/sofa8.png',
@@ -334,7 +361,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa9: {
         src: '../gameAssets/sofa9.png',
@@ -346,7 +374,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa10: {
         src: '../gameAssets/sofa10.png',
@@ -358,7 +387,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa11: {
         src: '../gameAssets/sofa11.png',
@@ -370,7 +400,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa12: {
         src: '../gameAssets/sofa12.png',
@@ -382,7 +413,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     sofa13: {
         src: '../gameAssets/sofa13.png',
@@ -394,7 +426,8 @@ export const items = {
             y: 450
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sofa"
     },
     starBall: {
         src: '../gameAssets/starBall.png',
@@ -418,7 +451,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon2: {
@@ -431,7 +465,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon3: {
@@ -444,7 +479,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon4: {
@@ -457,7 +493,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon5: {
@@ -470,7 +507,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon6: {
@@ -483,7 +521,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon7: {
@@ -496,7 +535,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon8: {
@@ -509,7 +549,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon9: {
@@ -522,7 +563,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon10: {
@@ -535,7 +577,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon11: {
@@ -548,7 +591,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
     eggmon12: {
@@ -561,7 +605,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
     eggmon13: {
         src: '../gameAssets/eggmon13.png',
@@ -573,7 +618,8 @@ export const items = {
             y: 545
         },
         rownum: 3,
-        row: 0
+        row: 0,
+        category: "HarMon"
     },
 
 
@@ -587,7 +633,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch1: {
         src: '../gameAssets/emoteSketch1.png',
@@ -599,7 +646,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch2: {
         src: '../gameAssets/emoteSketch2.png',
@@ -611,7 +659,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch3: {
         src: '../gameAssets/emoteSketch3.png',
@@ -623,7 +672,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch4: {
         src: '../gameAssets/emoteSketch4.png',
@@ -635,7 +685,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch5: {
         src: '../gameAssets/emoteSketch5.png',
@@ -647,7 +698,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch6: {
         src: '../gameAssets/emoteSketch6.png',
@@ -659,7 +711,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch7: {
         src: '../gameAssets/emoteSketch7.png',
@@ -671,7 +724,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch8: {
         src: '../gameAssets/emoteSketch8.png',
@@ -683,7 +737,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch9: {
         src: '../gameAssets/emoteSketch9.png',
@@ -695,7 +750,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch10: {
         src: '../gameAssets/emoteSketch10.png',
@@ -707,7 +763,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch11: {
         src: '../gameAssets/emoteSketch11.png',
@@ -719,7 +776,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch12: {
         src: '../gameAssets/emoteSketch12.png',
@@ -731,7 +789,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch13: {
         src: '../gameAssets/emoteSketch13.png',
@@ -743,7 +802,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch14: {
         src: '../gameAssets/emoteSketch14.png',
@@ -755,7 +815,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch15: {
         src: '../gameAssets/emoteSketch15.png',
@@ -767,7 +828,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch16: {
         src: '../gameAssets/emoteSketch16.png',
@@ -779,7 +841,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch17: {
         src: '../gameAssets/emoteSketch17.png',
@@ -791,7 +854,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch18: {
         src: '../gameAssets/emoteSketch18.png',
@@ -803,7 +867,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch19: {
         src: '../gameAssets/emoteSketch19.png',
@@ -815,7 +880,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch20: {
         src: '../gameAssets/emoteSketch20.png',
@@ -827,7 +893,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch21: {
         src: '../gameAssets/emoteSketch21.png',
@@ -839,7 +906,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch22: {
         src: '../gameAssets/emoteSketch22.png',
@@ -851,7 +919,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     emoteSketch23: {
         src: '../gameAssets/emoteSketch23.png',
@@ -863,7 +932,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Sketch"
     },
     hamster: {
         src: '../gameAssets/hamster.png',
@@ -887,7 +957,8 @@ export const items = {
             y: 665
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Box"
     },
     box1: {
         src: '../gameAssets/box1.png',
@@ -899,7 +970,8 @@ export const items = {
             y: 660
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Box"
     },
     box2: {
         src: '../gameAssets/box2.png',
@@ -911,7 +983,8 @@ export const items = {
             y: 660
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Box"
     },
     box3: {
         src: '../gameAssets/box3.png',
@@ -923,7 +996,8 @@ export const items = {
             y: 660
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Box"
     },
     box4: {
         src: '../gameAssets/box4.png',
@@ -935,7 +1009,8 @@ export const items = {
             y: 660
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Box"
     },
     plant1: {
         src: '../gameAssets/plant1.png',
@@ -947,7 +1022,8 @@ export const items = {
             y: 630
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Plant"
     },
     plant2: {
         src: '../gameAssets/plant2.png',
@@ -959,7 +1035,8 @@ export const items = {
             y: 660
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Plant"
     },
     plant3: {
         src: '../gameAssets/plant3.png',
@@ -971,7 +1048,8 @@ export const items = {
             y: 825
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Plant"
     },
     light: {
         src: '../gameAssets/light.png',
@@ -983,7 +1061,8 @@ export const items = {
             y: 175
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     wallShelves1: {
         src: '../gameAssets/wallShelves1.png',
@@ -995,7 +1074,8 @@ export const items = {
             y: 225
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     wallShelves2: {
         src: '../gameAssets/wallShelves2.png',
@@ -1007,7 +1087,8 @@ export const items = {
             y: 225
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     pinkWindow: {
         src: '../gameAssets/pinkWindow.png',
@@ -1019,7 +1100,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     basicWindow: {
         src: '../gameAssets/basicWindow.png',
@@ -1031,7 +1113,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     birdWithWindow: {
         src: '../gameAssets/birdWithWindow.png',
@@ -1043,7 +1126,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     greenWindow: {
         src: '../gameAssets/greenWindow.png',
@@ -1055,7 +1139,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     window1: {
         src: '../gameAssets/window1.png',
@@ -1067,7 +1152,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     window2: {
         src: '../gameAssets/window2.png',
@@ -1079,7 +1165,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     window3: {
         src: '../gameAssets/window3.png',
@@ -1091,7 +1178,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     window4: {
         src: '../gameAssets/window4.png',
@@ -1103,7 +1191,8 @@ export const items = {
             y: 220
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Window"
     },
     shelves3: {
         src: '../gameAssets/shelves3.png',
@@ -1115,7 +1204,8 @@ export const items = {
             y: 530
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     lamp1: {
         src: '../gameAssets/lamp1.png',
@@ -1127,7 +1217,8 @@ export const items = {
             y: 530
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     lamp2: {
         src: '../gameAssets/lamp2.png',
@@ -1139,7 +1230,8 @@ export const items = {
             y: 530
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     mushroom: {
         src: '../gameAssets/mushroom.png',
@@ -1187,7 +1279,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     icon2: {
         src: '../gameAssets/icon2.png',
@@ -1199,7 +1292,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     angryIcon: {
         src: '../gameAssets/angryIcon.png',
@@ -1211,7 +1305,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     angryIcon2: {
         src: '../gameAssets/angryIcon2.png',
@@ -1223,7 +1318,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     loveIcon: {
         src: '../gameAssets/loveIcon.png',
@@ -1235,7 +1331,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     cryIcon: {
         src: '../gameAssets/cryIcon.png',
@@ -1247,7 +1344,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     heartIcon: {
         src: '../gameAssets/heartIcon.png',
@@ -1259,7 +1357,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     vomitIcon: {
         src: '../gameAssets/vomitIcon.png',
@@ -1271,7 +1370,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     worrieIcon: {
         src: '../gameAssets/worrieIcon.png',
@@ -1283,7 +1383,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     shyIcon: {
         src: '../gameAssets/shyIcon.png',
@@ -1295,7 +1396,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
     dontKnowIcon: {
         src: '../gameAssets/dontKnowIcon.png',
@@ -1307,7 +1409,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Emote"
     },
 
 
@@ -1321,7 +1424,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     tableAlarm: {
         src: '../gameAssets/tableAlarm.png',
@@ -1333,7 +1437,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     tableCake: {
         src: '../gameAssets/tableCake.png',
@@ -1345,7 +1450,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     fan1: {
         src: '../gameAssets/fan1.png',
@@ -1357,7 +1463,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Furniture"
     },
     rainbow: {
         src: '../gameAssets/rainbow.png',
@@ -1405,7 +1512,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Plant"
     },
     shop1: {
         src: '../gameAssets/shop1.png',
@@ -1429,7 +1537,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     pet2: {
         src: '../gameAssets/pet2.png',
@@ -1441,7 +1550,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     fishing: {
         src: '../gameAssets/fishing.png',
@@ -1513,7 +1623,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     seaLight: {
         src: '../gameAssets/seaLight.png',
@@ -1537,7 +1648,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
 
     treasure: {
@@ -1562,7 +1674,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     anchor: {
         src: '../gameAssets/anchor.png',
@@ -1586,7 +1699,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     rock: {
         src: '../gameAssets/rock.png',
@@ -1610,7 +1724,8 @@ export const items = {
             y: 0
         },
         rownum: 1,
-        row: 0
+        row: 0,
+        category: "Animal"
     },
     bottle: {
         src: '../gameAssets/bottle.png',

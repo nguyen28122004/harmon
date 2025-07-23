@@ -1,4 +1,4 @@
-const target = new Date("2025-07-24T00:00:00+07:00").getTime();
+const target = new Date("2024-07-24T00:00:00+07:00").getTime();
 const timerEl = document.getElementById("timer");
 const btn = document.getElementById("enterBtn");
 

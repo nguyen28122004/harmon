@@ -1,6 +1,7 @@
 import { createCanvasItem, activeItems } from './logic.js';
 import { items } from './items.js';
 import { attachContextMenu } from './contextMenu.js';
+import { renderSidebarTabs } from './logic.js';
 
 const gameCanvas = document.getElementById('gameCanvas');
 const sidebar = document.getElementById('sidebar');
@@ -38,7 +39,7 @@ export function restoreItemStates() {
     savedStates.forEach(({ key, position, layer, scale, row, rownum }) => {
         if (items[key]) {
             const meta = {...items[key], layer: layer || 1, row: row || 0, rownum: rownum || 0 };
-            console.log("", meta);
+            // console.log("", meta);
             const clone = createCanvasItem(key, meta, true, {}, position, {
                 skipSidebarCheck: true
             });
@@ -84,4 +85,5 @@ export function resetItems() {
     }
 
     activeItems.clear();
+    renderSidebarTabs();
 }

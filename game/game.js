@@ -1,6 +1,8 @@
 import { restoreItemStates, resetItems } from './stateManager.js';
 import { initZoomControl } from './zoomControl.js';
 import { setSnapEnabled } from './logic.js';
+import { renderSidebarTabs } from './logic.js';
+
 
 
 const sidebar = document.getElementById('sidebar');
@@ -20,5 +22,6 @@ document.getElementById('resetBtn').addEventListener('click', () => {
 
 window.addEventListener('DOMContentLoaded', () => {
     restoreItemStates();
+    renderSidebarTabs();
     initZoomControl();
 });

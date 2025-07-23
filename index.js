@@ -482,7 +482,7 @@ Promise.all([
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             sideBarPrevBtn = prevBtn.cloneNode(true);
             sideBarPrevBtn.querySelectorAll("img")[0].src = "../res/leftButton.png";
-            sideBarWrapper = iframeDoc.getElementById("sidebar-wrapper");
+            sideBarWrapper = iframeDoc.getElementsByClassName("tab-header-vertical")[0];
             sideBarWrapper.insertBefore(sideBarPrevBtn, sideBarWrapper.firstChild);
             sideBarPrevBtn.addEventListener("click", () => showSlide(currentSlide - 1));
         };
