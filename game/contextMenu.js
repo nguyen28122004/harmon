@@ -1,5 +1,7 @@
 import { saveItemStates } from "./stateManager.js";
 import { createCanvasItem } from "./logic.js";
+import { activeItems } from './logic.js';
+import { items } from "./items.js";
 
 const contextMenu = document.getElementById('contextMenu');
 let contextTarget = null;
@@ -185,30 +187,37 @@ if (eggmonStateSelector) {
     }
 
     // ✅ Delete item
+    // ✅ Delete item
     const deleteBtn = document.getElementById("deleteItemBtn");
     if (deleteBtn) {
         deleteBtn.addEventListener("click", () => {
             contextTarget.remove();
+            activeItems.delete(contextKey); // 👈 Xóa khỏi set active
             saveItemStates();
-            // Tìm tab phù hợp để thêm lại
-const cat = contextMeta.category || 'Others';
-const currentTabBtn = document.querySelector('.tab-button-vertical.active');
-const currentTabName = currentTabBtn ? currentTabBtn.textContent : null;
 
-// Nếu item bị xóa, thì cho phép hiển thị lại trong tab phù hợp
-if (currentTabName === cat) {
-    if (!document.getElementById('sidebar-' + contextKey)) {
-        const newItem = createCanvasItem(contextKey, contextMeta);
-        newItem.id = 'sidebar-' + contextKey;
-        const tabContent = document.querySelector('.tab-content');
-        if (tabContent) {
-            tabContent.appendChild(newItem);
-        }
-    }
-}
+            const cat = contextMeta.category || 'Others';
+            const currentTabBtn = document.querySelector('.tab-button-vertical.active');
+            const currentTabName = currentTabBtn ? currentTabBtn.textContent : null;
+
+            if (currentTabName === cat) {
+                if (!document.getElementById('sidebar-' + contextKey)) {
+                    items[contextKey] = contextMeta; // 👈 Đảm bảo có metadata
+
+                    const newItem = createCanvasItem(contextKey, contextMeta);
+                    newItem.id = 'sidebar-' + contextKey;
+
+                    const tabContent = document.querySelector('.tab-content');
+                    if (tabContent) {
+                        tabContent.appendChild(newItem);
+                    }
+                }
+            }
+
             contextMenu.style.display = "none";
         });
     }
+
+
 }
 
 // Gắn context menu cho canvas item
