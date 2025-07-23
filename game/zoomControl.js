@@ -10,7 +10,7 @@ export function initZoomControl() {
             e.preventDefault();
             let scale = parseFloat(scaleSlider.value);
             const delta = e.deltaY < 0 ? 0.1 : -0.1;
-            scale = Math.min(2, Math.max(0.1, scale + delta));
+            scale = Math.min(3, Math.max(0.1, scale + delta));
             scaleSlider.value = scale.toFixed(1);
             updateScale(scale);
         }
