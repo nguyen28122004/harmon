@@ -1,6 +1,7 @@
 import { attachContextMenu } from './contextMenu.js';
 import { saveItemStates } from './stateManager.js';
 import { isRestoring } from './stateManager.js';
+import { renderSidebarTabs } from './sidebar.js';
 import { items } from './items.js';
 
 export const activeItems = new Set();
@@ -20,7 +21,7 @@ export function snapToGrid(x, y, gridSize = 5) {
     };
 }
 
-function getGameCanvasScale() {
+export function getGameCanvasScale() {
     const rect = gameCanvas.getBoundingClientRect();
     return {
         scaleX: rect.width / gameCanvas.offsetWidth,
@@ -43,6 +44,7 @@ export function createCanvasItem(key,
     let frameWidth, frameHeight;
     let currentFrame = 0;
 
+
     canvas.classList.add(isClone ? 'game-item' : 'sidebar-item');
 
     img.onload = () => {
@@ -58,6 +60,8 @@ export function createCanvasItem(key,
 
         const scale = parseFloat(canvas.dataset.scale || meta.scale || 1);
         canvas.dataset.scale = scale;
+        canvas.dataset.rotation = canvas.dataset.rotation || '0';
+
         canvas.width = frameWidth * scale;
         canvas.height = frameHeight * scale;
 
@@ -73,13 +77,16 @@ export function createCanvasItem(key,
         ctx.roundRect(0, 0, canvas.width, canvas.height, 12);
         ctx.clip();
 
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        // ctx.rotate((parseFloat(canvas.dataset.rotation) || 0) * Math.PI / 180);
         ctx.drawImage(
             img,
-            currentFrame * frameWidth, // sx
-            row * frameHeight, // sy ← lấy đúng dòng
-            frameWidth, // sWidth
-            frameHeight, // sHeight
-            0, 0, canvas.width, canvas.height
+            currentFrame * frameWidth,
+            row * frameHeight,
+            frameWidth,
+            frameHeight, -canvas.width / 2, -canvas.height / 2,
+            canvas.width,
+            canvas.height
         );
         ctx.restore();
 
@@ -105,17 +112,20 @@ export function createCanvasItem(key,
                 // Bo góc: dùng roundRect và clip để giới hạn vùng vẽ
                 ctx.save();
                 ctx.beginPath();
-                ctx.roundRect(0, 0, canvas.width, canvas.height, 12); // 12px bo góc
+                ctx.roundRect(0, 0, canvas.width, canvas.height, 12);
                 ctx.clip();
 
-                // Vẽ ảnh có hiệu ứng shadow
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                // ctx.rotate((parseFloat(canvas.dataset.rotation) || 0) * Math.PI / 180);
+                ctx.scale(scale, scale); // 👈 thêm dòng này
                 ctx.drawImage(
                     img,
                     currentFrame * frameWidth,
                     row * frameHeight,
                     frameWidth,
-                    frameHeight,
-                    0, 0, canvas.width, canvas.height
+                    frameHeight, -frameWidth / 2, -frameHeight / 2,
+                    frameWidth,
+                    frameHeight
                 );
                 ctx.restore();
 
@@ -276,117 +286,9 @@ export function createCanvasItem(key,
     };
 
     if (isClone) {
-        canvas.style.left = initialPosition.x + 'px';
-        canvas.style.top = initialPosition.y + 'px';
-        canvas.style.zIndex = meta.layer || 0;
-
-        // 🖱 Mouse down
-        canvas.addEventListener('mousedown', (e) => {
-            if (e.button === 2) return; // ✅ Chuột phải cho phép
-            if (canvas.dataset.ignoreClick === 'true') return; // 🛑 Không drag, scale
-            onMouseDown(e);
-        });
-
-        // ☝️ Touch start
-        canvas.addEventListener('touchstart', (e) => {
-            if (canvas.dataset.ignoreClick === 'true') return; // 🛑 Không drag cảm ứng
-            onTouchStart(e);
-        }, {
-            passive: false
-        });
-
-        // 🔁 Hoàn trả (dblclick)
-        canvas.addEventListener('dblclick', () => {
-            if (canvas.dataset.ignoreClick === 'true') return;
-            if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
-
-            const cat = meta.category || 'Others';
-
-            // 🧠 Xác định tab hiện tại
-            const currentTabBtn = document.querySelector('.tab-button-vertical.active');
-            let currentTabName = null;
-            if (currentTabBtn) {
-                currentTabName = currentTabBtn.textContent;
-            }
-
-
-            // 🔍 Nếu tab hiện tại là tab của item → hoàn trả về tab đó
-            if (currentTabName === cat) {
-                if (!document.getElementById('sidebar-' + key)) {
-                    const newItem = createCanvasItem(key, meta);
-                    newItem.id = 'sidebar-' + key;
-                    const tabContent = document.querySelector('.tab-content');
-                    if (tabContent) {
-                        tabContent.appendChild(newItem);
-                    } else {
-                        sidebar.appendChild(newItem); // fallback
-                    }
-                }
-            }
-
-            activeItems.delete(key);
-            if (typeof saveItemStates === 'function') saveItemStates();
-        });
-
-
+        cloneCanvasHandler(canvas, initialPosition, meta, onMouseDown, onTouchStart, key);
     } else {
-        canvas.id = 'sidebar-' + key;
-        canvas.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            if (activeItems.has(key)) return;
-            const sidebarRect = canvas.getBoundingClientRect();
-            const gameRect = gameCanvas.getBoundingClientRect();
-            const { scaleX, scaleY } = getGameCanvasScale();
-            const offsetX = (e.clientX - sidebarRect.left) / scaleX;
-            const offsetY = (e.clientY - sidebarRect.top) / scaleY;
-            const posX = (e.clientX - gameRect.left) / scaleX - offsetX;
-            const posY = (e.clientY - gameRect.top) / scaleY - offsetY;
-            const clone = createCanvasItem(key, meta, true, {
-                x: offsetX,
-                y: offsetY
-            }, {
-                x: posX,
-                y: posY
-            });
-            gameCanvas.appendChild(clone);
-            activeItems.add(key);
-            canvas.remove();
-            const event = new MouseEvent('mousedown', {
-                clientX: e.clientX,
-                clientY: e.clientY
-            });
-            clone.dispatchEvent(event);
-        });
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if (activeItems.has(key)) return;
-            const touch = e.touches[0];
-            const sidebarRect = canvas.getBoundingClientRect();
-            const gameRect = gameCanvas.getBoundingClientRect();
-            const { scaleX, scaleY } = getGameCanvasScale();
-            const offsetX = (touch.clientX - sidebarRect.left) / scaleX;
-            const offsetY = (touch.clientY - sidebarRect.top) / scaleY;
-            const posX = (touch.clientX - gameRect.left) / scaleX - offsetX;
-            const posY = (touch.clientY - gameRect.top) / scaleY - offsetY;
-
-            const clone = createCanvasItem(key, meta, true, {
-                x: offsetX,
-                y: offsetY
-            }, {
-                x: posX,
-                y: posY
-            });
-            gameCanvas.appendChild(clone);
-            activeItems.add(key);
-            canvas.remove();
-            clone.dispatchEvent(new TouchEvent('touchstart', {
-                touches: [touch],
-                cancelable: true,
-                bubbles: true
-            }));
-        }, {
-            passive: false
-        });
+        activeItemsHandler(canvas, key, meta);
     }
     attachContextMenu(canvas, key, meta);
     return canvas;
@@ -394,62 +296,116 @@ export function createCanvasItem(key,
 
 }
 
-
-
-export function renderSidebarTabs() {
-    sidebar.innerHTML = '';
-
-    // Tạo container cho phần tab nằm dọc
-    const tabWrapper = document.createElement('div');
-    tabWrapper.className = 'tab-wrapper';
-
-    const tabHeader = document.createElement('div');
-    tabHeader.className = 'tab-header-vertical';
-
-    const tabContent = document.createElement('div');
-    tabContent.className = 'tab-content';
-
-    // Gom item theo category
-    const categories = {};
-    for (const key in items) {
-        const meta = items[key];
-        const cat = meta.category || 'Others';
-        if (!categories[cat]) categories[cat] = [];
-        categories[cat].push({ key, meta });
-    }
-
-    const tabNames = Object.keys(categories);
-    let currentTab = tabNames[0];
-
-    tabNames.forEach((catName, index) => {
-        const tabBtn = document.createElement('button');
-        tabBtn.className = 'tab-button-vertical';
-        tabBtn.textContent = catName;
-        if (index === 0) tabBtn.classList.add('active');
-
-        tabBtn.addEventListener('click', () => {
-            document.querySelectorAll('.tab-button-vertical').forEach(btn => btn.classList.remove('active'));
-            tabBtn.classList.add('active');
-            renderTabContent(catName);
+function activeItemsHandler(canvas, key, meta) {
+    canvas.id = 'sidebar-' + key;
+    canvas.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        if (activeItems.has(key)) return;
+        const sidebarRect = canvas.getBoundingClientRect();
+        const gameRect = gameCanvas.getBoundingClientRect();
+        const { scaleX, scaleY } = getGameCanvasScale();
+        const offsetX = (e.clientX - sidebarRect.left) / scaleX;
+        const offsetY = (e.clientY - sidebarRect.top) / scaleY;
+        const posX = (e.clientX - gameRect.left) / scaleX - offsetX;
+        const posY = (e.clientY - gameRect.top) / scaleY - offsetY;
+        const clone = createCanvasItem(key, meta, true, {
+            x: offsetX,
+            y: offsetY
+        }, {
+            x: posX,
+            y: posY
         });
+        gameCanvas.appendChild(clone);
+        activeItems.add(key);
+        canvas.remove();
+        const event = new MouseEvent('mousedown', {
+            clientX: e.clientX,
+            clientY: e.clientY
+        });
+        clone.dispatchEvent(event);
+    });
+    canvas.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        if (activeItems.has(key)) return;
+        const touch = e.touches[0];
+        const sidebarRect = canvas.getBoundingClientRect();
+        const gameRect = gameCanvas.getBoundingClientRect();
+        const { scaleX, scaleY } = getGameCanvasScale();
+        const offsetX = (touch.clientX - sidebarRect.left) / scaleX;
+        const offsetY = (touch.clientY - sidebarRect.top) / scaleY;
+        const posX = (touch.clientX - gameRect.left) / scaleX - offsetX;
+        const posY = (touch.clientY - gameRect.top) / scaleY - offsetY;
 
-        tabHeader.appendChild(tabBtn);
+        const clone = createCanvasItem(key, meta, true, {
+            x: offsetX,
+            y: offsetY
+        }, {
+            x: posX,
+            y: posY
+        });
+        gameCanvas.appendChild(clone);
+        activeItems.add(key);
+        canvas.remove();
+        clone.dispatchEvent(new TouchEvent('touchstart', {
+            touches: [touch],
+            cancelable: true,
+            bubbles: true
+        }));
+    }, {
+        passive: false
+    });
+}
+
+function cloneCanvasHandler(canvas, initialPosition, meta, onMouseDown, onTouchStart, key) {
+    canvas.style.left = initialPosition.x + 'px';
+    canvas.style.top = initialPosition.y + 'px';
+    canvas.style.zIndex = meta.layer || 0;
+
+    // 🖱 Mouse down
+    canvas.addEventListener('mousedown', (e) => {
+        if (e.button === 2) return; // ✅ Chuột phải cho phép
+        if (canvas.dataset.ignoreClick === 'true') return; // 🛑 Không drag, scale
+        onMouseDown(e);
     });
 
-    function renderTabContent(catName) {
-        tabContent.innerHTML = '';
-        categories[catName].forEach(({ key, meta }) => {
-            if (activeItems.has(key)) return; // 🛑 Đã có trên canvas → bỏ qua
-            const canvasItem = createCanvasItem(key, meta);
-            tabContent.appendChild(canvasItem);
-        });
-    }
+    // ☝️ Touch start
+    canvas.addEventListener('touchstart', (e) => {
+        if (canvas.dataset.ignoreClick === 'true') return; // 🛑 Không drag cảm ứng
+        onTouchStart(e);
+    }, {
+        passive: false
+    });
+
+    // 🔁 Hoàn trả (dblclick)
+    canvas.addEventListener('dblclick', () => {
+        if (canvas.dataset.ignoreClick === 'true') return;
+        if (canvas.parentNode === gameCanvas) gameCanvas.removeChild(canvas);
+
+        const cat = meta.category || 'Others';
+
+        // 🧠 Xác định tab hiện tại
+        const currentTabBtn = document.querySelector('.tab-button-vertical.active');
+        let currentTabName = null;
+        if (currentTabBtn) {
+            currentTabName = currentTabBtn.textContent;
+        }
 
 
-    renderTabContent(currentTab);
+        // 🔍 Nếu tab hiện tại là tab của item → hoàn trả về tab đó
+        if (currentTabName === cat) {
+            if (!document.getElementById('sidebar-' + key)) {
+                const newItem = createCanvasItem(key, meta);
+                newItem.id = 'sidebar-' + key;
+                const tabContent = document.querySelector('.tab-content');
+                if (tabContent) {
+                    tabContent.appendChild(newItem);
+                } else {
+                    sidebar.appendChild(newItem); // fallback
+                }
+            }
+        }
 
-    tabWrapper.appendChild(tabHeader);
-    tabWrapper.appendChild(tabContent);
-    sidebar.appendChild(tabWrapper);
-
+        activeItems.delete(key);
+        if (typeof saveItemStates === 'function') saveItemStates();
+    });
 }

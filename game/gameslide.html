@@ -5,6 +5,11 @@
     <meta charset="UTF-8" />
     <title>Building House for HarMon</title>
     <link rel="stylesheet" href="gameStyle.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="./dist/gif.js"></script>
+    <script src="./dist/gif.worker.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.min.js"></script>
+
 </head>
 
 <body>
@@ -19,7 +24,26 @@
         </div>
     </div>
     <div class="rightbar">
+        <p style="font-family: 'MotherlandSignature';font-size:3rem;margin: -1rem 0;text-align: center;">HarMon's<br>House</p>
+        <hr>
         <button id="resetBtn">Reset Items</button>
+
+        <hr/>
+        <div class="gif-settings">
+            <label>🖼️ Số frame:
+                <input type="number" id="gifFrames" min="1" max="60" value="5">
+            </label>
+            <label>⏱️ Delay (ms):
+                <input type="number" id="gifDelay" min="50" max="1000" value="200">
+            </label>
+            <label>📉 Chất lượng:
+                <input type="number" id="gifQuality" min="1" max="100" value="20">
+            </label>
+        </div>
+        <button id="exportGifBtn">Xuất GIF</button>
+        <button id="exportImageBtn">📸 Xuất ảnh</button>
+        <hr />
+
         <div class="snap-toggle">
             <label class="label-text">Snap Position</label>
             <label class="switch">
@@ -31,14 +55,23 @@
             <label>Scale: <span id="scaleValue">1.0</span>x</label>
             <input type="range" id="scaleSlider" min="0.1" max="3" step="0.1" value="0.8">
         </div>
-        <div id="contextMenu"></div>
+
+        <div class="preset-wrapper">
+            <h3>🎯 Presets</h3>
+            <div class="preset-controls">
+                <input type="text" id="presetNameInput" placeholder="Tên preset..." />
+                <button id="savePresetBtn">💾 Lưu preset</button>
+            </div>
+            <ul id="presetList"></ul>
+        </div>
+
     </div>
 
+    <div id="contextMenu"></div>
 
 
     <!-- Import các module JS -->
-    <script type="module">
-        import './items.js'; import './contextMenu.js'; import './logic.js'; import './stateManager.js'; import './zoomControl.js'; import './game.js';
+    <script type="module">import './presetManager.js'; import './exportImage.js'; import './items.js'; import './contextMenu.js'; import './logic.js'; import './stateManager.js'; import './zoomControl.js'; import './game.js';
     </script>
 
 </body>

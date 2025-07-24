@@ -1,7 +1,7 @@
 import { createCanvasItem, activeItems } from './logic.js';
 import { items } from './items.js';
 import { attachContextMenu } from './contextMenu.js';
-import { renderSidebarTabs } from './logic.js';
+import { renderSidebarTabs } from './sidebar.js';
 
 const gameCanvas = document.getElementById('gameCanvas');
 const sidebar = document.getElementById('sidebar');
@@ -17,8 +17,10 @@ export function saveItemStates() {
         const scale = parseFloat(item.dataset.scale || '1'); // ✅ Lấy scale từ dataset
         const row = parseInt(item.dataset.row || '0');
         const rownum = parseInt(item.dataset.rownum || '1');
+        const rotation = parseFloat(item.dataset.rotation || '0');
 
-        itemStates.push({ key, position, layer, scale, row, rownum }); // ✅ Thêm scale vào object
+
+        itemStates.push({ key, position, layer, scale, row, rownum, rotation });
     });
 
     localStorage.setItem('gameItemStates', JSON.stringify(itemStates));
@@ -36,7 +38,7 @@ export function restoreItemStates() {
     const savedStates = JSON.parse(localStorage.getItem('gameItemStates') || '[]');
     const keysPlaced = new Set();
 
-    savedStates.forEach(({ key, position, layer, scale, row, rownum }) => {
+    savedStates.forEach(({ key, position, layer, scale, row, rownum, rotation }) => {
         if (items[key]) {
             const meta = {...items[key], layer: layer || 1, row: row || 0, rownum: rownum || 0 };
             // console.log("", meta);
@@ -51,6 +53,13 @@ export function restoreItemStates() {
             clone.dataset.row = row || 0;
             clone.dataset.rownum = rownum || 1;
             clone.style.zIndex = layer || 1;
+            clone.dataset.rownum = rownum || 1;
+            clone.dataset.rotation = rotation || 0;
+
+
+            clone.style.transform = `rotate(${rotation || 0}deg)`;
+            clone.style.transformOrigin = 'center center';
+
             // clone.style.transform = `scale(${scale || 1})`; // ✅ Sửa tại đây
 
             gameCanvas.appendChild(clone);

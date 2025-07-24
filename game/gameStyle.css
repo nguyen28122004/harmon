@@ -127,7 +127,7 @@ body {
 }
 
 .rightbar {
-    width: 160px;
+    /* width: 160px; */
     /* tăng từ 100px */
     background: #fff0f5;
     display: flex;
@@ -137,6 +137,25 @@ body {
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.1);
     border-left: 1px solid #ffe4ec;
     gap: 20px;
+    overflow-y: scroll;
+}
+
+.rightbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.rightbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rightbar::-webkit-scrollbar-thumb {
+    background: #f4b6c2;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.rightbar::-webkit-scrollbar-thumb:hover {
+    background: #f194b4;
 }
 
 .snap-toggle {
@@ -239,7 +258,8 @@ input:checked+.slider:before {
 }
 
 #scaleSlider,
-#scaleItemSlider {
+#scaleItemSlider,
+#rotateSlider {
     width: 100%;
     appearance: none;
     height: 6px;
@@ -251,7 +271,8 @@ input:checked+.slider:before {
 }
 
 #scaleSlider::-webkit-slider-thumb,
-#scaleItemSlider::-webkit-slider-thumb {
+#scaleItemSlider::-webkit-slider-thumb,
+#rotateSlider::-webkit-slider-thumb {
     appearance: none;
     width: 16px;
     height: 16px;
@@ -263,7 +284,8 @@ input:checked+.slider:before {
 }
 
 #scaleSlider::-moz-range-thumb,
-#scaleItemSlider::-moz-range-thumb {
+#scaleItemSlider::-moz-range-thumb,
+#rotateSlider::-moz-range-thumb {
     width: 16px;
     height: 16px;
     border-radius: 50%;
@@ -497,4 +519,183 @@ input:checked+.slider:before {
 
 .tab-content::-webkit-scrollbar-thumb:hover {
     background: #f194b4;
+}
+
+
+/* Các nút xuất ảnh và GIF */
+
+#exportImageBtn,
+#exportGifBtn {
+    padding: 10px 14px;
+    width: 90%;
+    margin: 4px auto;
+    background: #f4b6c2;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.25s ease-in-out;
+}
+
+#exportImageBtn:hover,
+#exportGifBtn:hover {
+    background: #f194b4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Thiết kế lại khối gif-settings */
+
+.gif-settings {
+    width: 100%;
+    background: #ffeef4;
+    border: 1px solid #ffd6e6;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 13px;
+    color: #d16b86;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+
+/* Mỗi dòng label + input */
+
+.gif-settings label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/* Input số */
+
+.gif-settings input[type="number"] {
+    width: 60px;
+    padding: 6px;
+    border: 1px solid #f4b6c2;
+    border-radius: 6px;
+    background-color: #fffafc;
+    color: #d16b86;
+    text-align: right;
+    font-size: 13px;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    transition: border 0.2s ease;
+}
+
+.gif-settings input[type="number"]:focus {
+    border-color: #f194b4;
+    outline: none;
+}
+
+.preset-wrapper {
+    margin: 10px;
+    padding: 10px;
+    background: #ffeef4;
+    border: 1px solid #ffd6e6;
+    border-radius: 12px;
+    font-size: 13px;
+    color: #d16b86;
+}
+
+.preset-wrapper h3 {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.preset-controls {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+#presetNameInput {
+    flex: 1;
+    padding: 6px;
+    border: 1px solid #f4b6c2;
+    border-radius: 6px;
+    background: #fffafc;
+    color: #d16b86;
+}
+
+#savePresetBtn {
+    background: #f4b6c2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: ease 0.2s;
+}
+
+#savePresetBtn:hover {
+    background: #f194b4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+    transition: ease 0.2s;
+}
+
+#presetList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#presetList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ffd6e6;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    padding: 6px;
+}
+
+.preset-actions button {
+    margin-left: 4px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.preset-actions button {
+    background: #f4b6c2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.preset-actions button:hover {
+    background: #f194b4;
+    transform: translateY(-1px);
+}
+
+hr {
+    width: 90%;
+    align-content: center;
+    border-color: #e692a899;
+    border-width: 1px;
+}
+
+@font-face {
+    font-family: 'MotherlandSignature';
+    src: url('../fonts/NVN-Motherland-Signature-1.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
