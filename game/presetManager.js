@@ -1,4 +1,5 @@
 import { restoreItemStates, saveItemStates } from './stateManager.js';
+import { showPopup, showPopupNearButton } from './logic.js';
 
 const presetInput = document.getElementById('presetNameInput');
 const saveBtn = document.getElementById('savePresetBtn');
@@ -34,7 +35,10 @@ function renderPresetList() {
 
 saveBtn.addEventListener('click', () => {
     const name = presetInput.value.trim();
-    if (!name) return alert("Bạn cần nhập tên preset!");
+    if (!name.trim()) {
+        showPopup("📛 Bạn cần nhập tên preset!");
+        return;
+    }
 
     const presets = getPresets();
     const itemStates = JSON.parse(localStorage.getItem('gameItemStates') || '[]');

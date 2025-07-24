@@ -26,9 +26,7 @@
     <div class="rightbar">
         <p style="font-family: 'MotherlandSignature';font-size:3rem;margin: -1rem 0;text-align: center;">HarMon's<br>House</p>
         <hr>
-        <button id="resetBtn">Reset Items</button>
 
-        <hr/>
         <div class="gif-settings">
             <label>🖼️ Số frame:
                 <input type="number" id="gifFrames" min="1" max="60" value="5">
@@ -64,6 +62,8 @@
             </div>
             <ul id="presetList"></ul>
         </div>
+        <hr/>
+        <button id="resetBtn">Reset Items</button>
 
     </div>
 
@@ -73,7 +73,10 @@
     <!-- Import các module JS -->
     <script type="module">import './presetManager.js'; import './exportImage.js'; import './items.js'; import './contextMenu.js'; import './logic.js'; import './stateManager.js'; import './zoomControl.js'; import './game.js';
     </script>
+    <div id="popupMessage" class="popup-message"></div>
 
 </body>
+
+
 
 </html>

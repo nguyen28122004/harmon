@@ -409,3 +409,37 @@ function cloneCanvasHandler(canvas, initialPosition, meta, onMouseDown, onTouchS
         if (typeof saveItemStates === 'function') saveItemStates();
     });
 }
+
+
+export function showPopup(message, duration = 2500) {
+    const popup = document.getElementById('popupMessage');
+    popup.textContent = message;
+    popup.classList.add('show');
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, duration);
+}
+
+export function showPopupNearButton(message, buttonId = 'savePresetBtn', duration = 2500) {
+    const button = document.getElementById(buttonId);
+    const popup = document.getElementById('popupMessage');
+
+    if (!button || !popup) return;
+
+    // Set message
+    popup.textContent = message;
+
+    // Tính vị trí của nút
+    const rect = button.getBoundingClientRect();
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+
+    popup.style.top = `${rect.top + scrollTop - 40}px`; // Hiển thị phía trên nút
+    popup.style.left = `${rect.left + scrollLeft}px`; // Căn trái theo nút
+
+    popup.classList.add('show');
+
+    setTimeout(() => {
+        popup.classList.remove('show');
+    }, duration);
+}

@@ -699,3 +699,30 @@ hr {
     font-weight: normal;
     font-style: normal;
 }
+
+.popup-message {
+    position: absolute;
+    background: #f194b4;
+    bottom: 20px;
+    right: 20px;
+    color: white;
+    padding: 12px 20px;
+    /* 🔼 Gấp đôi padding */
+    border-radius: 12px;
+    /* 🔼 Bo tròn lớn hơn */
+    font-size: 20px;
+    /* 🔼 Gấp đôi font-size */
+    white-space: nowrap;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* Đổ bóng giữ nguyên hoặc tăng nhẹ */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.346), 0 10px 24px rgba(241, 148, 180, 0.4);
+}
+
+.popup-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
