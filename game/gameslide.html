@@ -31,11 +31,14 @@
             <label>🖼️ Số frame:
                 <input type="number" id="gifFrames" min="1" max="60" value="5">
             </label>
-            <label>⏱️ Delay (ms):
-                <input type="number" id="gifDelay" min="50" max="1000" value="200">
+            <label>⏱️ Delay Capture (ms):
+                <input type="number" id="captureDelay" min="1" max="1000" value="5">
+            </label>
+            <label>⏱️ Delay Gif (ms):
+                <input type="number" id="gifDelay" min="1" max="1000" value="180">
             </label>
             <label>📉 Chất lượng:
-                <input type="number" id="gifQuality" min="1" max="100" value="20">
+                <input type="number" id="gifQuality" min="1" max="100" value="10">
             </label>
         </div>
         <button id="exportGifBtn">Xuất GIF</button>

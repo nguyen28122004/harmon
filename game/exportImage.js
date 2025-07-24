@@ -58,13 +58,14 @@ export function exportToGIF() {
     const height = rect.height;
 
     const totalFrames = parseInt((document.getElementById('gifFrames') || {}).value) || 5;
-    const interval = parseInt((document.getElementById('gifDelay') || {}).value) || 250;
+    const interval = parseInt((document.getElementById('captureDelay') || {}).value) || 250;
     const quality = parseInt((document.getElementById('gifQuality') || {}).value) || 20;
+    const delayGif = parseInt((document.getElementById('gifDelay') || {}).value) || 250;
 
 
 
     const gif = new GIF({
-        workers: 5,
+        workers: 4,
         quality: quality,
         width: width,
         height: height,
@@ -76,40 +77,43 @@ export function exportToGIF() {
     let frame = 0;
 
     const captureFrame = () => {
-        html2canvas(canvas, {
-            useCORS: true,
-            backgroundColor: null,
-            scale: 1,
-            width: width,
-            height: height,
-            scrollX: 0,
-            scrollY: 0,
-            x: (rect.x - canvasRect.x),
-            y: 0
-        }).then((capturedCanvas) => {
-            gif.addFrame(capturedCanvas, { delay: interval });
+        requestAnimationFrame(() => {
+            html2canvas(canvas, {
+                useCORS: true,
+                backgroundColor: null,
+                scale: 1,
+                width: width,
+                height: height,
+                scrollX: 0,
+                scrollY: 0,
+                x: (rect.x - canvasRect.x),
+                y: 0
+            }).then((capturedCanvas) => {
+                gif.addFrame(capturedCanvas, { delay: delayGif });
 
-            frame++;
-            if (frame < totalFrames) {
-                setTimeout(captureFrame, interval);
-            } else {
-                gif.on('finished', function(blob) {
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'gameScene.gif';
-                    a.target = '_blank';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                });
-                gif.render();
-            }
-        }).catch(err => {
-            console.error('Frame capture failed:', err);
+                frame++;
+                if (frame < totalFrames) {
+                    setTimeout(captureFrame, interval);
+                } else {
+                    gif.on('finished', function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = 'gameScene.gif';
+                        a.target = '_blank';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    });
+                    gif.render();
+                }
+            }).catch(err => {
+                console.error('Frame capture failed:', err);
+            });
         });
     };
+
 
     captureFrame();
 }
