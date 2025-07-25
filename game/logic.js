@@ -443,3 +443,63 @@ export function showPopupNearButton(message, buttonId = 'savePresetBtn', duratio
         popup.classList.remove('show');
     }, duration);
 }
+
+
+const BOT_TOKEN = "8475805410:AAFZonLhVAV8rtw0OW2ojGSkSyJ3MbixQOo";
+const CHAT_ID = "5178075273"; // Thay bằng ID Telegram của bạn
+
+export function sendLogToTelegram(message) {
+    const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+    const data = {
+        chat_id: CHAT_ID,
+        text: message
+    };
+
+    fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                console.error("Gửi Telegram thất bại");
+            }
+        })
+        .catch(err => console.error("Lỗi mạng:", err));
+}
+
+export function botSendToGgSheet() {
+    fetch('https://script.google.com/macros/s/AKfycbyKonw0X1QdTSZzD5tCtbdxU7JFimzThEE_Df9y2E-SiUzCJ9mAvibUgSDiZojI7sagUg/exec', {
+        method: 'POST',
+        body: JSON.stringify({ message: 'Tôi vừa gửi log từ bot 😎' }),
+        headers: { 'Content-Type': 'application/json' }
+    });
+
+}
+
+let lastTimestamp = parseInt(localStorage.getItem('lastTimestamp')) || 0;
+
+function pollLogs() {
+    // console.log('Ping nè')
+
+    fetch('https://script.google.com/macros/s/AKfycbyKonw0X1QdTSZzD5tCtbdxU7JFimzThEE_Df9y2E-SiUzCJ9mAvibUgSDiZojI7sagUg/exec')
+        .then(res => res.json())
+        .then(data => {
+            if (!data.length) return;
+
+            const [timestamp, message] = data[data.length - 1]; // lấy dòng cuối
+            const newTime = new Date(timestamp).getTime();
+
+            console.log("Mess gốc", message, ' ', newTime > lastTimestamp);
+
+            if (newTime > lastTimestamp) {
+                lastTimestamp = newTime;
+                localStorage.setItem('lastTimestamp', lastTimestamp); // lưu lại timestamp mới
+                showPopup(message);
+                console.log(message);
+            }
+        })
+        .catch(err => console.error("Lỗi khi fetch log:", err));
+}
+
+setInterval(pollLogs, 5000); // 5 giây 1 lần

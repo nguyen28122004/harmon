@@ -50,6 +50,7 @@ function smoothBackgroundChange(newImageUrl = "") {
 
 
 function showSlide(index) {
+    sendLogToTelegram(`ĐÃ NHẢY TỚI SLIDE ${index}`)
     if (index < 10 || index > 13)
         smoothBackgroundChange("")
     else if (index > 10) {
@@ -556,8 +557,8 @@ function initZoomControl() {
 
 function unlockDoor() {
 
-
-    // Reset inputs & icons
+    sendLogToTelegram('UNLOCK DOOR')
+        // Reset inputs & icons
     const popup = document.getElementById("passwordPopup");
     popup.classList.add("popup-fadeout");
 
@@ -592,4 +593,54 @@ function unlockDoor() {
         // Gọi showSlide để xử lý hiệu ứng mượt 
         showSlide(currentSlide);
     }, 1800);
+}
+
+
+const BOT_TOKEN = "8475805410:AAFZonLhVAV8rtw0OW2ojGSkSyJ3MbixQOo";
+const CHAT_ID = "5178075273"; // Thay bằng ID Telegram của bạn
+
+function sendLogToTelegram(message) {
+
+    fetch('https://api.ipify.org?format=json')
+        .then(res => res.json())
+        .then(data => {
+            const contentText = [
+                '-------------------',
+                document.URL,
+                "👀 Truy cập từ IP: " + data.ip,
+                message,
+                '-------------------',
+            ].join('\n');
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: contentText
+                    })
+                })
+                .then(res => {
+                    if (!res.ok) {
+                        console.error("Gửi Telegram thất bại:", res.status);
+                        res.text().then(console.error);
+                    }
+                })
+                .catch(err => console.error("Lỗi fetch gửi Telegram:", err));
+        });
+}
+
+window.onload = () => {
+    sendLogToTelegram('Có người vừa vào web')
+
+};
+
+// Thiết lập gửi log mỗi 3 phút
+if (!window._logPingInterval) {
+    window._logPingInterval = setInterval(() => {
+        const timestamp = new Date().toLocaleString();
+        sendLogToTelegram(`Đang ở slide ${currentSlide}\n🕒 Ping định kỳ lúc ${timestamp}`);
+    }, 3 * 60 * 1000); // 3 phút
 }
